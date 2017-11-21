@@ -2,10 +2,18 @@
 
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2017/18
 
-## Analiza plač v Sloveniji
+# Analiza plač v Sloveniji
 
-Izbrali si boste temo, s katero se bo vaš projekt ukvarjal. Tukaj boste
-napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+V svojem projektu bom analizirala plače v Slovniji, naredila primerjavo minimalnih plač v Evropski uniji,ter predstavila podatke o odmeri dohodnine za leto 2017. Vir podatkov so Eurostat, SURS in FURS. 
+
+###Tabele: 
+
+###Viri: 
+* http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=0701011S&ti=&path=../Database/Dem_soc/07_trg_dela/10_place/01_07010_place/&lang=2 
+* http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=0711322S&ti=&path=../Database/Dem_soc/07_trg_dela/10_place/03_07113_strukt_statistika/&lang=2
+* http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&pcode=tps00155&language=en
+* http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=0714702S&ti=&path=../Database/Dem_soc/07_trg_dela/10_place/12_07147_place_raziskava_strukt_plac/&lang=2
+* http://www.fu.gov.si/fileadmin/Internet/Davki_in_druge_dajatve/Podrocja/Dohodnina/Letna_odmera_dohodnine/Opis/Lestvica_za_leto_2017.pdf
 
 ## Program
 
