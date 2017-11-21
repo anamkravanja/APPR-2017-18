@@ -6,9 +6,9 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2017/18
 
 V svojem projektu bom analizirala plače v Slovniji, naredila primerjavo minimalnih plač v Evropski uniji,ter predstavila podatke o odmeri dohodnine za leto 2017. Vir podatkov so Eurostat, SURS in FURS. 
 
-###Tabele: 
+##Tabele: 
 
-###Viri: 
+##Viri: 
 * http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=0701011S&ti=&path=../Database/Dem_soc/07_trg_dela/10_place/01_07010_place/&lang=2 
 * http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=0711322S&ti=&path=../Database/Dem_soc/07_trg_dela/10_place/03_07113_strukt_statistika/&lang=2
 * http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&pcode=tps00155&language=en
