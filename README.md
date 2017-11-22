@@ -13,16 +13,16 @@ Podatki so v obliki CSV in HTML
 
 ### Zasnova podatkovnega modela: 
 #### Tabele: 
-1.	tabela (CSV):Povprečne mesečne plače in indeks povprečnih mesečnih plač po dejavnostih (v eurih in realno indeks glede na prejšni mesec)
+1.	tabela (CSV): **Povprečne mesečne plače in indeks povprečnih mesečnih plač po dejavnostih (v eurih in realno indeks glede na prejšni mesec)**
 * stolpci: dejavnost, obdobje (2014-2016),bruto plače,neto plače
 
-2.	tabela (CSV):Povprečne mesečne bruto plače po statističnih regijah,starosti,letu in spolu
+2.	tabela (CSV): **Povprečne mesečne bruto plače po statističnih regijah,starosti,letu in spolu**
 *	stolpci: statisične regije, starost, leto in spol
 
-3.	tabela (CSV):Primerjava minimalnih plač med EU(28) državami 
+3.	tabela (CSV): **Primerjava minimalnih plač med EU(28) državami** 
 *	stolpci: države, leta
 
-4. tabela (csv): Povprečne mesečne bruto plače v javnem in zasebnem sektorju glede na doseženo izobrazbo
+4. tabela (csv): **Povprečne mesečne bruto plače v javnem in zasebnem sektorju glede na doseženo izobrazbo**
 * stolpci: sektor, spol, leto in stonja izobrazbe
 
 #### Viri: 
