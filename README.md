@@ -4,31 +4,26 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2017/18
 
 # Analiza plač v Sloveniji
 
-V svojem projektu bom analizirala plače v Slovniji, naredila primerjavo minimalnih plač v Evropski uniji,ter predstavila podatke o odmeri dohodnine za leto 2017. Vir podatkov so Eurostat, SURS in FURS. 
+V svojem projektu bom analizirala plače v Sloveniji. Zanimali me bodo podatki o višini plače glede na dejavnosti, višina plače glede na spol in starost ter glede na stopnjo izobrazbe,kjer bom analizirala ali pride do razlik v plači med javnim in zasebnim sektorjem. Nato pa bom primerjala minimalno plačo v Sloveniji z minimalnimi po drugih evropskih državah.
 
+Ker je višina minimalne plače odvisna od več kazalnikov in se spreminja, bom dodatno primerjala to gibanje z realnim gibanjem gospodarske rasti po posameznih dejavnostih in primerjala z prvo tabelo. 
+
+Vir podatkov so Eurostat, SURS in FURS. 
 Podatki so v obliki CSV in HTML
 
 ### Zasnova podatkovnega modela: 
 #### Tabele: 
 1.	tabela (CSV):Povprečne mesečne plače in indeks povprečnih mesečnih plač po dejavnostih (v eurih in realno indeks glede na prejšni mesec)
-*	stolpec 1:dejavnost 
-*	stolpec 2: obdobje (2014-2016)
-*	stolpec 3: bruto plače
-*	stolpec 4: neto plače
+* stolpci: dejavnost, obdobje (2014-2016),bruto plače,neto plače
 
 2.	tabela (CSV):Povprečne mesečne bruto plače po statističnih regijah,starosti,letu in spolu
-*	stolpec 1: statisična regija
-*	stolpec 2: starost
-*	stolpec 3: leto in spol
+*	stolpci: statisične regije, starost, leto in spol
 
 3.	tabela (CSV):Primerjava minimalnih plač med EU(28) državami 
-*	stolpec 1: država
-*	stolpec 2,3, ...: leto
+*	stolpci: države, leta
 
 4. tabela (csv): Povprečne mesečne bruto plače v javnem in zasebnem sektorju glede na doseženo izobrazbo
-* stolpec 1: sektor
-* stolpec 2:spol
-* stolpec 3:leto in stonja izobrazbe
+* stolpci: sektor, spol, leto in stonja izobrazbe
 
 #### Viri: 
 * http://pxweb.stat.si/pxweb/Database/Dem_soc/07_trg_dela/10_place/03_07113_strukt_statistika/03_07113_strukt_statistika.asp
