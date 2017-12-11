@@ -1,6 +1,9 @@
-# 2. faza: Uvoz podatkov
+# 2. faza: Uvoz podatkov Ana Marija Kravanja
 
 sl <- locale("sl", decimal_mark = ",", grouping_mark = ".")
+
+#uvoz prve tabele: povprečne plače po dejavnostih
+
 
 # Funkcija, ki uvozi občine iz Wikipedije
 uvozi.obcine <- function() {
