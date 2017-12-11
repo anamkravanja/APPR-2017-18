@@ -30,6 +30,7 @@ Podatki so v obliki CSV in HTML
 * http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&pcode=tps00155&language=en
 * http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=0711322S&ti=&path=../Database/Dem_soc/07_trg_dela/10_place/03_07113_strukt_statistika/&lang=2
 * http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=0701011S&ti=&path=../Database/Dem_soc/07_trg_dela/10_place/01_07010_place/&lang=2 
+* http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=0301915S&ti=&path=../Database/Ekonomsko/03_nacionalni_racuni/05_03019_BDP_letni/&lang=2
 
 ## Program
 
