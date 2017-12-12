@@ -1,14 +1,15 @@
 # 2. faza: Uvoz podatkov Ana Marija Kravanja
 
+
 sl <- locale("sl", decimal_mark = ",", grouping_mark = ".")
 
 
 #uvoz prve tabele: povprečne plače po dejavnostih
-stolpci1 <-c("DEJAVNOST","DOSEŽENA IZOBRAZBA","SPOL","LETO","STEVILO")
+#stolpci1 <-c("DEJAVNOST","DOSEŽENA IZOBRAZBA","SPOL","LETO","STEVILO")
 povprecne_place_po_dejavnostih <- read_delim("podatki/povprecne_place_po_dejavnostih.csv", 
                                               ";", escape_double = FALSE, locale = locale(encoding = "WINDOWS-1252"), 
                                               trim_ws = TRUE, skip = 3,
-                                             col_names = stolpci1,
+                                              #col_names = stolpci1,
                                               n_max=23)
 podatki <- povprecne_place_po_dejavnostih %>% fill(1:5) %>% drop_na(LETO)
 #View(povprecne_place_po_dejavnostih)

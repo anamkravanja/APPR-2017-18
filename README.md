@@ -4,9 +4,9 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2017/18
 
 # Analiza plač v Sloveniji
 
-V svojem projektu bom analizirala plače v Sloveniji. Zanimali me bodo podatki o višini plače glede na dejavnosti ter višina plače glede na spol in starost. Analizirala bom tudi ali pride do razlik v plači med javnim in zasebnim sektorjem glede na stopnjo izobrazbe osebe. Nato pa bom primerjala minimalno plačo v Sloveniji z minimalnimi po drugih evropskih državah.
+V svojem projektu bom analizirala plače v Sloveniji. Zanimali me bodo podatki o višini plače glede na dejavnosti ter višina plače glede na spol in starost. Analizirala bom tudi ali pride do razlik v plači med javnim in zasebnim sektorjem glede na stopnjo izobrazbe osebe.
 
-Ker je višina minimalne plače odvisna od več dejavnikov in se spreminja, bom dodatno primerjala povprečne mesečne plače z realnim gibanjem gospodarske rasti po posameznih dejavnostih.
+Nato pa bom primerjala minimalne plače evropskih držav z minimalno v Sloveniji. Ter pogledala vzporednice med višanjem minimalne plače in povprečnimi izdatki za potovanje v letih od 2012-2016.
 
 Vir podatkov so Eurostat, SURS in FURS. 
 Podatki so v obliki CSV in HTML
@@ -19,11 +19,16 @@ Podatki so v obliki CSV in HTML
 2.	tabela (CSV): **Povprečne mesečne bruto plače po statističnih regijah,starosti,letu in spolu**
 *	stolpci: statisične regije, starost, leto in spol
 
-3.	tabela (CSV): **Primerjava minimalnih plač med EU(28) državami** 
+3. tabela (csv): **Povprečne mesečne bruto plače v javnem in zasebnem sektorju glede na doseženo izobrazbo**
+* stolpci: sektor, spol, leto in stonja izobrazbe
+
+4.	tabela (CSV): **Minimalne plače v evropskih državah** 
 *	stolpci: države, leta
 
-4. tabela (csv): **Povprečne mesečne bruto plače v javnem in zasebnem sektorju glede na doseženo izobrazbo**
-* stolpci: sektor, spol, leto in stonja izobrazbe
+5.tabela(html): **Povprečni izdatki za potovanje posameznika v evropi**
+* stolpci : države, leta
+
+
 
 #### Viri: 
 * http://pxweb.stat.si/pxweb/Database/Dem_soc/07_trg_dela/10_place/03_07113_strukt_statistika/03_07113_strukt_statistika.asp
@@ -31,6 +36,7 @@ Podatki so v obliki CSV in HTML
 * http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=0711322S&ti=&path=../Database/Dem_soc/07_trg_dela/10_place/03_07113_strukt_statistika/&lang=2
 * http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=0701011S&ti=&path=../Database/Dem_soc/07_trg_dela/10_place/01_07010_place/&lang=2 
 * http://pxweb.stat.si/pxweb/Dialog/varval.asp?ma=0301915S&ti=&path=../Database/Ekonomsko/03_nacionalni_racuni/05_03019_BDP_letni/&lang=2
+* http://appsso.eurostat.ec.europa.eu/nui/submitViewTableAction.do
 
 ## Program
 
