@@ -13,8 +13,8 @@ Podatki so v obliki CSV in HTML
 
 ### Zasnova podatkovnega modela: 
 #### Tabele: 
-1.	tabela (CSV): **Povprečne mesečne plače in indeks povprečnih mesečnih plač po dejavnostih (v eurih in realno indeks glede na prejšni mesec)**
-* stolpci: dejavnost, obdobje (2008-2016),bruto plače,neto plače
+1.	tabela (CSV): **Povprečne mesečne plače po dejavnostih, izobrazbi in spolu(v eurih)**
+* stolpci: dejavnost, obdobje (2008-2016)
 
 2.	tabela (CSV): **Povprečne mesečne bruto plače po statističnih regijah,starosti,letu in spolu**
 *	stolpci: statisične regije, starost, leto in spol
