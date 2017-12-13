@@ -22,7 +22,6 @@ stolpci <- data.frame(spol = povprecne_place_po_dejavnostih[2, ] %>% unlist(),
   fill(1:3) %>% apply(1, paste, collapse = "")
 stolpci[1] <- "dejavnost"
 colnames(povprecne_place_po_dejavnostih) <- stolpci
-View(povprecne_place_po_dejavnostih)
 povp.place.dejavnost <- melt(povprecne_place_po_dejavnostih[-c(1, 2), ], value.name = "povp.placa",
                              id.vars = "dejavnost", variable.name = "stolpec") %>%
   mutate(stolpec = parse_character(stolpec)) %>%
@@ -35,15 +34,17 @@ View(povp.place.dejavnost)
 #uvoz druge tabele: povprecne place po statisticnih regijah
 povprecne_place_po_statisticnih_regijah <- read_csv2("podatki/povprecne_place_po_statisticnih_regijah.csv", 
                                                      locale = sl, trim_ws = TRUE, skip = 3,
-                                                     na=c("-",""),n_max=118)
+                                                     na=c("-","","z"),n_max=118)
 stolpci1 <- data.frame(spol = povprecne_place_po_statisticnih_regijah[1,] %>% unlist(),
                       leto = colnames(povprecne_place_po_statisticnih_regijah) %>%
                       { gsub("X.*", NA, .) } %>% parse_number()) %>% 
-    apply(1, paste, collapse = "")
+    fill(1:2) %>% apply(1, paste, collapse = "")
 stolpci1[1] <- "statisticna regija"
 stolpci1[2] <- "starost"
 colnames(povprecne_place_po_statisticnih_regijah) <-stolpci1
-View(povprecne_place_po_statisticnih_regijah)
+povprecne_place_po_statisticnih_regijah <- fill(povprecne_place_po_statisticnih_regijah,"statisticna regija")[-c(2,11,20,29,38,47,56,65,74,83,92,110), ]
+                                            
+
 
 #uvoz tretje tabele: povprecne place glede na izobrazbo
 povprecne_place_glede_na_izobrazbo <- read_csv2("podatki/povprecne_place_glede_na_izobrazbo.csv", 
