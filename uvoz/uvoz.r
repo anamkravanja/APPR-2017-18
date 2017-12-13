@@ -36,7 +36,7 @@ povprecne_place_glede_na_izobrazbo <- read_delim("podatki/povprecne_place_glede_
                                                  ";", escape_double = FALSE, locale = locale(encoding = "WINDOWS-1252"), 
                                                  na = "NA", trim_ws = TRUE,
                                                  skip = 2,
-                                                 n_max=25)
+                                                 n_max=22)
 View(povprecne_place_glede_na_izobrazbo)
 
 #uvoz četrte tabele: minimalne place v Evropi
