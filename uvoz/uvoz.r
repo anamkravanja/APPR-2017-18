@@ -10,13 +10,11 @@ library(shiny)
 library(tidyr)
 sl <- locale(encoding = "Windows-1250", decimal_mark = ",", grouping_mark = ".")
 
-
 #uvoz prve tabele: povprečne plače po dejavnostih
 sl <- locale(encoding = "Windows-1250", decimal_mark = ",", grouping_mark = ".")
 povprecne_place_po_dejavnostih <- read_csv2("podatki/povprecne_place_po_dejavnostih.csv", 
                                             locale = sl, trim_ws = TRUE, skip = 3,
                                             na = c("-", ""), n_max = 24)
-View(povprecne_place_po_dejavnostih)
 stolpci <- data.frame(spol = povprecne_place_po_dejavnostih[2, ] %>% unlist(),
                       leto = colnames(povprecne_place_po_dejavnostih) %>%
                       { gsub("X.*", NA, .) } %>% parse_number(),
@@ -38,10 +36,10 @@ View(povp.place.dejavnost)
 povprecne_place_po_statisticnih_regijah <- read_csv2("podatki/povprecne_place_po_statisticnih_regijah.csv", 
                                                      locale = sl, trim_ws = TRUE, skip = 3,
                                                      na=c("-",""),n_max=118)
-stolpci1 <- data.frame(spol = povprecne_place_po_statisticnih_regijah[1, ] %>% unlist(),
+stolpci1 <- data.frame(spol = povprecne_place_po_statisticnih_regijah[1,] %>% unlist(),
                       leto = colnames(povprecne_place_po_statisticnih_regijah) %>%
-                      { gsub("X.*", NA, .) } %>% parse_number()) %>%
-   apply(2, paste, collapse = "")
+                      { gsub("X.*", NA, .) } %>% parse_number()) %>% 
+    apply(1, paste, collapse = "")
 stolpci1[1] <- "statisticna regija"
 stolpci1[2] <- "starost"
 colnames(povprecne_place_po_statisticnih_regijah) <-stolpci1
