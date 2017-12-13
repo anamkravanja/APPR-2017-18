@@ -1,7 +1,4 @@
-# 2. faza: Uvoz podatkov Ana Marija Kravanja
-install.packages("tidyr")
-install.packages("htmlTable")
-install.packages(c("knitr", "dplyr", "reader", "rvest", "gnubfn", "ggplot2", "reshape2", "shiny"))
+# 2. faza: Uvoz podatkov, tidy data Ana Marija Kravanja
 library(knitr)
 library(dplyr)
 library(readr)
@@ -11,32 +8,50 @@ library(ggplot2)
 library(reshape2)
 library(shiny)
 library(tidyr)
-sl <- locale("sl", decimal_mark = ",", grouping_mark = ".")
+sl <- locale(encoding = "Windows-1250", decimal_mark = ",", grouping_mark = ".")
 
 
 #uvoz prve tabele: povprečne plače po dejavnostih
-#stolpci1 <-c("DEJAVNOST","DOSEŽENA IZOBRAZBA","SPOL","LETO","STEVILO")
-povprecne_place_po_dejavnostih <- read_delim("podatki/povprecne_place_po_dejavnostih.csv", 
-                                              ";", escape_double = FALSE, locale = locale(encoding = "WINDOWS-1252"), 
-                                              trim_ws = TRUE, skip = 3,
-                                              #col_names = stolpci1,
-                                              n_max=23)
-podatki <- povprecne_place_po_dejavnostih %>% fill(1:5) %>% drop_na(LETO)
+sl <- locale(encoding = "Windows-1250", decimal_mark = ",", grouping_mark = ".")
+povprecne_place_po_dejavnostih <- read_csv2("podatki/povprecne_place_po_dejavnostih.csv", 
+                                            locale = sl, trim_ws = TRUE, skip = 3,
+                                            na = c("-", ""), n_max = 24)
 View(povprecne_place_po_dejavnostih)
+stolpci <- data.frame(spol = povprecne_place_po_dejavnostih[2, ] %>% unlist(),
+                      leto = colnames(povprecne_place_po_dejavnostih) %>%
+                      { gsub("X.*", NA, .) } %>% parse_number(),
+                      izobrazba = povprecne_place_po_dejavnostih[1, ] %>% unlist()) %>%
+  fill(1:3) %>% apply(1, paste, collapse = "")
+stolpci[1] <- "dejavnost"
+colnames(povprecne_place_po_dejavnostih) <- stolpci
+View(povprecne_place_po_dejavnostih)
+povp.place.dejavnost <- melt(povprecne_place_po_dejavnostih[-c(1, 2), ], value.name = "povp.placa",
+                             id.vars = "dejavnost", variable.name = "stolpec") %>%
+  mutate(stolpec = parse_character(stolpec)) %>%
+  transmute(leto = stolpec %>% strapplyc("([0-9]+)") %>% unlist() %>% parse_number(),
+            spol = stolpec %>% strapplyc("^([^0-9]+)") %>% unlist() %>% factor(), dejavnost,
+            izobrazba = stolpec %>% strapplyc("([^0-9]+)$") %>% unlist() %>% factor(), povp.placa)
 
+View(povp.place.dejavnost)
 
 #uvoz druge tabele: povprecne place po statisticnih regijah
-povprecne_place_po_statisticnih_regijah <- read_delim("podatki/povprecne_place_po_statisticnih_regijah.csv", 
-                                                      ";", escape_double = FALSE, locale = locale(encoding = "ISO-8859-2"), 
-                                                      na = "NA", trim_ws = TRUE)
-#View(povprecne_place_po_statisticnih_regijah)
+povprecne_place_po_statisticnih_regijah <- read_csv2("podatki/povprecne_place_po_statisticnih_regijah.csv", 
+                                                     locale = sl, trim_ws = TRUE, skip = 3,
+                                                     na=c("-",""),n_max=118)
+stolpci1 <- data.frame(spol = povprecne_place_po_statisticnih_regijah[1, ] %>% unlist(),
+                      leto = colnames(povprecne_place_po_statisticnih_regijah) %>%
+                      { gsub("X.*", NA, .) } %>% parse_number()) %>%
+   apply(2, paste, collapse = "")
+stolpci1[1] <- "statisticna regija"
+stolpci1[2] <- "starost"
+colnames(povprecne_place_po_statisticnih_regijah) <-stolpci1
+View(povprecne_place_po_statisticnih_regijah)
 
 #uvoz tretje tabele: povprecne place glede na izobrazbo
-povprecne_place_glede_na_izobrazbo <- read_delim("podatki/povprecne_place_glede_na_izobrazbo.csv", 
-                                                 ";", escape_double = FALSE, locale = locale(encoding = "WINDOWS-1252"), 
-                                                 na = "NA", trim_ws = TRUE,
-                                                 skip = 2,
-                                                 n_max=22)
+povprecne_place_glede_na_izobrazbo <- read_csv2("podatki/povprecne_place_glede_na_izobrazbo.csv", 
+                                            locale = sl, trim_ws = TRUE, skip = 3,
+                                            na = c("-", ""), n_max = 22)
+
 View(povprecne_place_glede_na_izobrazbo)
 
 #uvoz četrte tabele: minimalne place v Evropi
