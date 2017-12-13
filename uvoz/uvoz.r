@@ -1,5 +1,15 @@
 # 2. faza: Uvoz podatkov Ana Marija Kravanja
-
+install.packages("tidyr")
+install.packages("htmlTable")
+install.packages(c("knitr", "dplyr", "reader", "rvest", "gnubfn", "ggplot2", "reshape2", "shiny"))
+library(knitr)
+library(dplyr)
+library(readr)
+library(rvest)
+library(gsubfn)
+library(ggplot2)
+library(reshape2)
+library(shiny)
 
 sl <- locale("sl", decimal_mark = ",", grouping_mark = ".")
 
@@ -41,9 +51,24 @@ minimalne_place_v_evropi <- spread(minimalne_place_v_evropi,leto,vrednost)
 names(minimalne_place_v_evropi) <- c("LETO","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017")
 View(minimalne_place_v_evropi)
 
-#uvoz pete tabele: rast BDP po dejavnostih
-rast_BDP_po_dejavnostih <- read_delim("podatki/rast_BDP_po_dejavnostih.csv", 
-                                      ";", escape_double = FALSE, locale = locale(encoding = "WINDOWS-1252"), 
-                                      trim_ws = TRUE, skip = 2)[-c(30:39), ] 
-#View(rast_BDP_po_dejavnostih)
+
+#uvoz podatkov iz html
+library(gsubfn)
+library(readr)
+library(dplyr)
+library(XML)
+library(reshape2)
+
+izdatki_za_potovanja <- readHTMLTable("podatki/izdatki_za_potovanje.html",
+                          which = 1)
+colnames(izdatki_za_potovanja) <- c("DRŽAVA", 2012:2016)
+
+for (col in colnames(izdatki_za_potovanja)) {
+  izdatki_za_potovanja[izdatki_za_potovanja[[col]] == ":", col] <- NA}
+
+problems(izdatki_za_potovanja)
+View(izdatki_za_potovanja)
+
+#združevanje tabel 4. in 5.
+
 
