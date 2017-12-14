@@ -38,16 +38,21 @@ stolpci1[1] <- "statisticna regija"
 stolpci1[2] <- "starost"
 colnames(povprecne_place_po_statisticnih_regijah) <-stolpci1
 povprecne_place_po_statisticnih_regijah <- fill(povprecne_place_po_statisticnih_regijah,"statisticna regija")[-c(2,11,20,29,38,47,56,65,74,83,92,110), ]
-
+povprecne_place_po_statisticnih_regijah <- unite(povprecne_place_po_statisticnih_regijah,"statisticna regija","starost",
+                                                 col = "starost", sep = ",")
 povpr.place.stat.reg. <- melt(povprecne_place_po_statisticnih_regijah[-c(1), ], value.name = "povpr.placa",
-                              id.vars = "statisticna regija", variable.name = "stolpec")
+                              id.vars = "starost", variable.name = "stolpec")%>%
+  mutate(stolpec = parse_character(stolpec)) %>%
+  transmute(leto = stolpec %>% strapplyc("([0-9]+)") %>% unlist() %>% parse_number(),
+            spol = stolpec %>% strapplyc("^([^0-9]+)") %>% unlist() %>% factor(), starost, povpr.placa)
+povpr.place.stat.reg. <- separate(povpr.place.stat.reg., starost,
+                                  into = c("regija", "starost"),sep=",")
 
 
 #uvoz tretje tabele: povprecne place glede na izobrazbo
 povprecne_place_glede_na_izobrazbo <- read_csv2("podatki/povprecne_place_glede_na_izobrazbo.csv", 
                                             locale = sl, trim_ws = TRUE, skip = 3,
                                             na=c("-","","z"), n_max = 21)
-View(povprecne_place_glede_na_izobrazbo)
 stolpci2 <- data.frame(spol = povprecne_place_glede_na_izobrazbo[1,] %>% unlist(),
                        leto = colnames(povprecne_place_glede_na_izobrazbo) %>%
                        { gsub("X.*", NA, .) } %>% parse_number()) %>% 
@@ -56,6 +61,17 @@ stolpci2[1] <- "sektor"
 stolpci2[2] <- "spol"
 colnames(povprecne_place_glede_na_izobrazbo) <-stolpci2
 povprecne_place_glede_na_izobrazbo <- fill(povprecne_place_glede_na_izobrazbo,"sektor")[-c(2,6,10,14,18), ]
+povprecne_place_glede_na_izobrazbo<- unite(povprecne_place_glede_na_izobrazbo,"sektor","spol",
+                                                 col = "sektor", sep = ",")
+View(povprecne_place_glede_na_izobrazbo)
+povpr.place.izobr <- melt(povprecne_place_glede_na_izobrazbo[-c(1), ], value.name = "povpr.placa",
+                              id.vars = "sektor", variable.name = "stolpec")%>%
+  mutate(stolpec = parse_character(stolpec)) %>%
+  transmute(leto = stolpec %>% strapplyc("([0-9]+)") %>% unlist() %>% parse_number(),
+            izobrazba= stolpec %>% strapplyc("^([^0-9]+)") %>% unlist() %>% factor(),sektor,povpr.placa )
+povpr.place.izobr <- separate(povpr.place.izobr, sektor,
+                                  into = c("sektor", "spol"),sep=",")
+
 
 #uvoz četrte tabele: minimalne_place_v_Evropi
 minimalne_place_v_evropi <- readHTMLTable("podatki/minimalne_place_v_Evropi.html",
