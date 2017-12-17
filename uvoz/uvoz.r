@@ -23,8 +23,6 @@ povp.place.dejavnost <- melt(povprecne_place_po_dejavnostih[-c(1, 2), ], value.n
             spol = stolpec %>% strapplyc("^([^0-9]+)") %>% unlist() %>% factor(), dejavnost,
             izobrazba = stolpec %>% strapplyc("([^0-9]+)$") %>% unlist() %>% factor(), povp.placa)
 
-View(povp.place.dejavnost)
-View(povprecne_place_po_dejavnostih)
 
 #uvoz druge tabele: povprecne place po statisticnih regijah
 povprecne_place_po_statisticnih_regijah <- read_csv2("podatki/povprecne_place_po_statisticnih_regijah.csv", 
@@ -63,7 +61,7 @@ colnames(povprecne_place_glede_na_izobrazbo) <-stolpci2
 povprecne_place_glede_na_izobrazbo <- fill(povprecne_place_glede_na_izobrazbo,"sektor")[-c(2,6,10,14,18), ]
 povprecne_place_glede_na_izobrazbo<- unite(povprecne_place_glede_na_izobrazbo,"sektor","spol",
                                                  col = "sektor", sep = ",")
-View(povprecne_place_glede_na_izobrazbo)
+
 povpr.place.izobr <- melt(povprecne_place_glede_na_izobrazbo[-c(1), ], value.name = "povpr.placa",
                               id.vars = "sektor", variable.name = "stolpec")%>%
   mutate(stolpec = parse_character(stolpec)) %>%
@@ -77,7 +75,6 @@ povpr.place.izobr <- separate(povpr.place.izobr, sektor,
 minimalne_place_v_evropi <- readHTMLTable("podatki/minimalne_place_v_Evropi.html",
                                       which = 1)
 colnames(minimalne_place_v_evropi) <- c("DRZAVA", 1999:2017)
-View(minimalne_place_v_evropi)
 
 minimalne_place_v_evropi <- melt(minimalne_place_v_evropi, id.vars = "DRZAVA", variable.name = "leto",
                                  value.name = "place") %>% mutate(place = parse_number(place, na = c(":", ":(z)"))) %>%
