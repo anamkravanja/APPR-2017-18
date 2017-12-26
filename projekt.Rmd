@@ -54,13 +54,13 @@ V tej fazi obdelave podatkov, sem uvozila tabele v CSV in HTM obliki. Podatke im
 **Opomba**: da bi razpredelnice res bile v obliki *tidy data*, bi morali odstraniti vrstice `SKUPAJ` (saj je izpeljan iz vrstic `moški` in `ženske`).
 
 4. MINIMALNE PLAČE V EVROPI
-  - `država` - država v kateri so bile meritve opravljene
-  - `leto` - spremenljivka: 
+  - `leto` - leto v katerem so bile meritve opravljene
+  - `drzava` - spremenljivka: država 
   - `minimalna plača` - meritev : minimalna plača v določenem letu glede na državo (v €)
 
 5.IZDATKI ZA POTOVANJA
-  - `država` - država v kateri so bile meritve opravljene
-  - `leto` - spremenljivka
+  - `leto` - leto v katerem so bile meritve opravljene
+  - `drzava` - spremenljivka: država v kateri so bile meritve opravljene
   - `izdatki namenjeni potovanju` - meritev : povprečni izdatki namenjeni potovanjem (v €)
 
 Spodnji graf prikazuje porazdelitev števila naselij v občinah.

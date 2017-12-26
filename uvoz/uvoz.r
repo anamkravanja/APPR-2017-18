@@ -78,7 +78,7 @@ colnames(minimalne_place_v_evropi) <- c("DRZAVA", 1999:2017)
 minimalne_place_v_evropi <- melt(minimalne_place_v_evropi, id.vars = "DRZAVA", variable.name = "leto",
                                  value.name = "place") %>% mutate(place = parse_number(place, na = c(":", ":(z)"))) %>%
   drop_na("place")
-
+minimalne_place_v_evropi<- minimalne_place_v_evropi[c("leto","DRZAVA","place")]
 
 #uvoz podatkov html izdatki za potovanje
 izdatki_za_potovanja <- readHTMLTable("podatki/izdatki_za_potovanje.html",
@@ -88,7 +88,7 @@ colnames(izdatki_za_potovanja) <- c("DRZAVA", 2012:2016)
 izdatki_za_potovanja <- melt(izdatki_za_potovanja, id.vars = "DRZAVA", variable.name = "leto",
                              value.name = "izdatki") %>% mutate(izdatki= parse_number(izdatki, na = c(":", ":(z)"))) %>%
   drop_na("izdatki")
-
+izdatki_za_potovanja <-izdatki_za_potovanja[c("leto","DRZAVA","izdatki")]
 #združevanje tabel 4. in 5.
 
 
