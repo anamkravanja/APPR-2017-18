@@ -32,27 +32,36 @@ Nato pa bom primerjala minimalne plače evropskih držav z minimalno v Sloveniji
 ```{r uvoz, echo=FALSE, message=FALSE}
 source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
+V tej fazi obdelave podatkov, sem uvozila tabele v CSV in HTM obliki. Podatke imam v 5 razpredelnicah, v *tidy data* obliki. 
+1. POVPRECNE PLACE PO DEJAVNOSTIH
+  - `leto` - leto v katerem so bile meritve opravljene
+  - `spol` - spremenljivka: moški, ženska, skupaj
+  - `dejavnost` - spremenljivka : dejavnosti
+  - `povprečna plača` - meritev : povprečna plača glede na leto, spol in dejavnost (v €)
 
-Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki HTML
-z Wikipedije. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
+2. POVPREČNE PLAČE PO STATISTIČNIH REGIJAH
+  - `leto` - leto v katerem so bile meritve opravljene
+  - `spol` - spremenljivka: moški, ženska, skupaj
+  - `regija` - spremenljivka : regija v kateri je bila meritev opravljena
+  - `povprečna plača` - meritev : povprečna plača glede na leto,spol in regijo (v €)
 
-1. `druzine` - podatki o družinah za vsako občino
-  - `obcina` - spremenljivka: ime občine (neurejen faktor),
-  - `velikost.druzine` - spremenljivka: število otrok v družini (število: 1, 2, 3 ali 4, kjer zadnja vrednost pomeni 4 ali več),
-  - `stevilo.druzin` - meritev: število družin z ustreznim številom otrok v ustrezni občini (število).
+3. POVPREČNE PLAČE GLEDE NA IZOBRAZBO
+  - `leto` - leto v katerem so bile meritve opravljene
+  - `izobrazba` - spremenljivka: stopnja dosežene izobrazbe
+  - `sektor` - spremenljivka : dejavnosti
+  - `spol` - spremenljivka: moški, ženska, skupaj
+  - `povprečna plača` - meritev : povprečna plača glede na spol,sektor in leto (v €)
+**Opomba**: da bi razpredelnice res bile v obliki *tidy data*, bi morali odstraniti vrstice `SKUPAJ` (saj je izpeljan iz vrstic `moški` in `ženske`).
 
-2. `obcine` - podatki o občinah
-  - `obcina` - spremenljivka: ime občine (neurejen faktor),
-  - `povrsina` - meritev: površina občine v km$^2$ (število),
-  - `prebivalci` - meritev: prebivalstvo občine (število),
-  - `gostota` - meritev: število prebivalcev na km$^2$ (število),
-  - `naselja` - meritev: število naselij v občini (število),
-  - `ustanovitev` - meritev: leto ustanovitve občine (število),
-  - `pokrajina` - meritev: pokrajina, ki ji občina pripada (neurejen faktor),
-  - `regija` - meritev: regija, ki ji občina pripada (neurejen faktor),
-  - `odcepitev` - meritev: podatki o občinah, od katerih se je občina odcepila (besedilo).
+4. MINIMALNE PLAČE V EVROPI
+  - `država` - država v kateri so bile meritve opravljene
+  - `leto` - spremenljivka: 
+  - `minimalna plača` - meritev : minimalna plača v določenem letu glede na državo (v €)
 
-**Opomba**: da bi razpredelnica `obcine` res bila v obliki *tidy data*, bi morali odstraniti stolpec `gostota` (saj je izpeljan iz stolpcev `povrsina` in `prebivalci`), podatke o pokrajinah pa bi morali premakniti v drugo razpredelnico, saj nekatere občine pripadajo dvema pokrajinama. Podobno bi morali narediti tudi s stolpcem `odcepitev`.
+5.IZDATKI ZA POTOVANJA
+  - `država` - država v kateri so bile meritve opravljene
+  - `leto` - spremenljivka
+  - `izdatki namenjeni potovanju` - meritev : povprečni izdatki namenjeni potovanjem (v €)
 
 Spodnji graf prikazuje porazdelitev števila naselij v občinah.
 

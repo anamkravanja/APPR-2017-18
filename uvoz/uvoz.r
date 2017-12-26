@@ -1,6 +1,5 @@
 # 2. faza: Uvoz podatkov, tidy data Ana Marija Kravanja
 
-
 sl <- locale(encoding = "Windows-1250", decimal_mark = ",", grouping_mark = ".")
 
 #uvoz prve tabele: povprečne plače po dejavnostih
