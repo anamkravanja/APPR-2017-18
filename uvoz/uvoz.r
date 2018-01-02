@@ -89,6 +89,11 @@ izdatki_za_potovanja <- melt(izdatki_za_potovanja, id.vars = "DRZAVA", variable.
                              value.name = "izdatki") %>% mutate(izdatki= parse_number(izdatki, na = c(":", ":(z)"))) %>%
   drop_na("izdatki")
 izdatki_za_potovanja <-izdatki_za_potovanja[c("leto","DRZAVA","izdatki")]
-#združevanje tabel 4. in 5.
+
+
+#združevanje tabel 4. in 5.: samo podatki, ki so v obeh tabelah
+primerajava_tabel <- inner_join(minimalne_place_v_evropi,izdatki_za_potovanja)
+
+
 
 
