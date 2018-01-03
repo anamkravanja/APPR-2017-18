@@ -92,8 +92,9 @@ izdatki_za_potovanja <-izdatki_za_potovanja[c("leto","DRZAVA","izdatki")]
 
 
 #združevanje tabel 4. in 5.: samo podatki, ki so v obeh tabelah
-primerajava_tabel <- inner_join(minimalne_place_v_evropi,izdatki_za_potovanja)
-
+primerjava_tabel <- inner_join(minimalne_place_v_evropi,izdatki_za_potovanja)
+primerjava_tabel[87,2] <- "Germany"
+primerjava_tabel[66,2] <- "Germany"
 
 
 

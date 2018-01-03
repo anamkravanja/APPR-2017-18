@@ -3,6 +3,16 @@
 library(ggplot2)
 library(dplyr)
 
+#graf, ki primerja minimalne plače v Evropi in izdatke za potovanja v istih evropskih državah
+g <- ggplot(primerjava_tabel) + aes(x = DRZAVA, y = place,color=leto,size = izdatki) + geom_point() +ggtitle("Minimalne plače in izdatki za potovanja v EU")
+
+
+#graf, ki prikazuje povprečne plače glede na izbrazbo v določenem sektorju
+povpr.place.izobr<-povpr.place.izobr[!(povpr.place.izobr$izobrazba=="Izobrazba - Skupaj"),]
+povpr.place.izobr <- povpr.place.izobr[- grep("SKUPAJ", povpr.place.izobr$sektor),]
+povpr.place.izobr<-povpr.place.izobr[!(povpr.place.izobr$spol=="Spol - SKUPAJ"),]
+
+h <- ggplot(povpr.place.izobr) + aes(x = leto, y = povpr.placa ,color=izobrazba, shape = spol) + geom_point()+ ggtitle("povprečne plače glede na izobrazbo")
 
 
 # Uvozimo zemljevid.
