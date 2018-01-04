@@ -65,7 +65,8 @@ povpr.place.izobr <- melt(povprecne_place_glede_na_izobrazbo[-c(1), ], value.nam
                               id.vars = "sektor", variable.name = "stolpec")%>%
   mutate(stolpec = parse_character(stolpec)) %>%
   transmute(leto = stolpec %>% strapplyc("([0-9]+)") %>% unlist() %>% parse_number(),
-            izobrazba= stolpec %>% strapplyc("^([^0-9]+)") %>% unlist() %>% factor(),sektor,povpr.placa )
+            izobrazba = stolpec %>% strapplyc("^([^0-9]+)") %>% unlist() %>% factor(),sektor,
+            povpr.placa = parse_number(povpr.placa))
 povpr.place.izobr <- separate(povpr.place.izobr, sektor,
                                   into = c("sektor", "spol"),sep=",")
 

@@ -15,6 +15,14 @@ povpr.place.izobr<-povpr.place.izobr[!(povpr.place.izobr$spol=="Spol - SKUPAJ"),
 h <- ggplot(povpr.place.izobr) + aes(x = leto, y = povpr.placa ,color=izobrazba, shape = spol) + geom_point()+ ggtitle("povprečne plače glede na izobrazbo")
 
 
+povpr.place.stat.reg.<-povpr.place.stat.reg.[(povpr.place.stat.reg.$starost=="Starost - SKUPAJ"),]
+
+
+
+zemljevid <- uvozi.zemljevid("http://www.stat.si/doc/Geo/Statisticne_regije_NUTS3.zip",
+    "statisticne_regije", encoding = "Windows-1250")%>%
+    pretvori.zemljevid()
+
 # Uvozimo zemljevid.
 zemljevid <- uvozi.zemljevid("http://baza.fmf.uni-lj.si/OB.zip",
                              "OB/OB", encoding = "Windows-1250")
@@ -26,3 +34,4 @@ zemljevid <- pretvori.zemljevid(zemljevid)
 # Izračunamo povprečno velikost družine
 povprecja <- druzine %>% group_by(obcina) %>%
   summarise(povprecje = sum(velikost.druzine * stevilo.druzin) / sum(stevilo.druzin))
+
