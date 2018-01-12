@@ -16,13 +16,8 @@ povpr.place.izobr<-povpr.place.izobr[!(povpr.place.izobr$spol=="Spol - SKUPAJ"),
 h <- ggplot(povpr.place.izobr) + aes(x = leto, y = povpr.placa ,color=izobrazba, shape = spol) + geom_point()+ ggtitle("povprečne plače glede na izobrazbo")
 
 
-povpr.place.stat.reg.<-povpr.place.stat.reg.[(povpr.place.stat.reg.$starost=="Starost - SKUPAJ"),]
-povpr.place.stat.reg.<-povpr.place.stat.reg.[(povpr.place.stat.reg.$spol=="Spol - SKUPAJ"),]
-povpr.place.stat.reg.<-povpr.place.stat.reg.[- grep("SLOVENIJA", povpr.place.stat.reg.$regija),]
-povpr.place.stat.reg.<-povpr.place.stat.reg.[(povpr.place.stat.reg.$leto=="2016"),]
-povpr.place.stat.reg.$leto <- NULL
-povpr.place.stat.reg.$spol <- NULL
-povpr.place.stat.reg.$starost <- NULL
+#izračun povprečja v regijah za tabelo
+
 
 
 zemljevid <- uvozi.zemljevid("http://www.stat.si/doc/Geo/Statisticne_regije_NUTS3.zip",
