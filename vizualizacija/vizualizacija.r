@@ -20,6 +20,10 @@ povpr.place.stat.reg.<-povpr.place.stat.reg.[(povpr.place.stat.reg.$starost=="St
 povpr.place.stat.reg.<-povpr.place.stat.reg.[(povpr.place.stat.reg.$spol=="Spol - SKUPAJ"),]
 povpr.place.stat.reg.<-povpr.place.stat.reg.[- grep("SLOVENIJA", povpr.place.stat.reg.$regija),]
 povpr.place.stat.reg.<-povpr.place.stat.reg.[(povpr.place.stat.reg.$leto=="2016"),]
+povpr.place.stat.reg.$leto <- NULL
+povpr.place.stat.reg.$spol <- NULL
+povpr.place.stat.reg.$starost <- NULL
+
 
 zemljevid <- uvozi.zemljevid("http://www.stat.si/doc/Geo/Statisticne_regije_NUTS3.zip",
     "statisticne_regije", encoding = "Windows-1250")%>%
@@ -28,6 +32,9 @@ ggplot() + geom_polygon(data = zemljevid, aes(x = long, y = lat,
                                            group = group, fill = id)) +
   guides(fill = FALSE)
 
+ggplot() + geom_polygon(data = left_join(regija, povpr.placa,
+                                         by = c("IME" = "regija")),
+                        aes(x = long, y = lat, group = group, fill = povpr.placa))
 
 
 # Uvozimo zemljevid.
