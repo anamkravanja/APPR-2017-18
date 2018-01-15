@@ -21,7 +21,10 @@ povp.place.dejavnost <- melt(povprecne_place_po_dejavnostih[-c(1, 2), ], value.n
   transmute(leto = stolpec %>% strapplyc("([0-9]+)") %>% unlist() %>% parse_number(),
             spol = stolpec %>% strapplyc("^([^0-9]+)") %>% unlist() %>% factor(), dejavnost,
             izobrazba = stolpec %>% strapplyc("([^0-9]+)$") %>% unlist() %>% factor(), povp.placa =parse_number(povp.placa))
-
+povp.place.dejavnost <- povp.place.dejavnost%>% filter(izobrazba == "Izobrazba - SKUPAJ",
+                                                        spol == "Spol - SKUPAJ",
+                                                         dejavnost != "SKD DEJAVNOST - SKUPAJ") %>%group_by(dejavnost) %>% summarise(povprecje = mean(povp.placa))
+povp.place.dejavnost<- povp.place.dejavnost[-c(20,21), ]
 
 #uvoz druge tabele: povprecne place po statisticnih regijah
 povprecne_place_po_statisticnih_regijah <- read_csv2("podatki/povprecne_place_po_statisticnih_regijah.csv", 

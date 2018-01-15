@@ -4,16 +4,41 @@ library(ggplot2)
 library(dplyr)
 
 #graf, ki primerja minimalne plače v Evropi in izdatke za potovanja v istih evropskih državah
-g <- ggplot(primerjava_tabel) + aes(x = DRZAVA, y = place,color=leto,size = izdatki) + geom_point() +ggtitle("Minimalne plače in izdatki za potovanja v EU")
+EU.min. <- ggplot(primerjava_tabel) + aes(x = DRZAVA, y = place,color=leto,size = izdatki) + 
+    geom_point() +ggtitle("Minimalne plače in izdatki za potovanja v EU")
 
 
 #graf, ki prikazuje povprečne plače glede na izbrazbo v določenem sektorju
-povpr.place.izobr<-povpr.place.izobr[!(povpr.place.izobr$izobrazba=="Izobrazba - Skupaj"),]
-povpr.place.izobr <- povpr.place.izobr[- grep("SKUPAJ", povpr.place.izobr$sektor),]
-povpr.place.izobr<-povpr.place.izobr[!(povpr.place.izobr$spol=="Spol - SKUPAJ"),]
+sektor <- povpr.place.izobr%>% filter(spol == "Spol - SKUPAJ",
+                                      izobrazba != "Izobrazba - Skupaj",
+                                      sektor != "1 Javni in zasebni sektor - SKUPAJ",
+                                      sektor != "11 Javni sektor - SKUPAJ")
+sekt <- ggplot(sektor,aes(izobrazba,povpr.placa))
+sekt + geom_bar(stat = "identity", aes(fill = sektor),position = "dodge") + 
+   xlab("Izobrazba") + ylab("Povprečna plača") +
+  ggtitle("Povprečna plača glede na izobrazbo in sektor")+
+  theme_bw()
 
 
-h <- ggplot(povpr.place.izobr) + aes(x = leto, y = povpr.placa ,color=izobrazba, shape = spol) + geom_point()+ ggtitle("povprečne plače glede na izobrazbo")
+izobrazba <- povpr.place.izobr%>% filter(spol != "Spol - SKUPAJ",
+                                         izobrazba != "Izobrazba - Skupaj",
+                                         sektor != "1 Javni in zasebni sektor - SKUPAJ",
+                                         sektor != "11 Javni sektor - SKUPAJ")
+
+izobr<- ggplot(izobrazba) + aes(x = leto, y = povpr.placa ,color=izobrazba, shape = spol) + geom_point()+ ggtitle("Povprečne plače glede na izobrazbo in spol")
+
+
+#povprečna plača glede na dejavnost
+
+dejavnost <- ggplot(povp.place.dejavnost, aes(dejavnost,povprecje,fill =dejavnost)) +
+  geom_bar(width = 1, stat = "identity", color = "white") +
+  theme_gray() +
+  theme(axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.line = element_blank())
+  
+dejavnost +coord_polar() 
 
 
 #povprečna plača v določeni regiji 
@@ -28,6 +53,7 @@ ggplot() + geom_polygon(data = zemljevid, aes(x = long, y = lat,
 ggplot() + geom_polygon(data = left_join(zemljevid,povpr.place.stat.reg.,
                                          by = c("IME" = "regija")),
                         aes(x = long, y = lat, group = group, fill = povprecje))
+
 
 # Uvozimo zemljevid.
 zemljevid <- uvozi.zemljevid("http://baza.fmf.uni-lj.si/OB.zip",
