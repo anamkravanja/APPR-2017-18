@@ -20,7 +20,7 @@ povp.place.dejavnost <- melt(povprecne_place_po_dejavnostih[-c(1, 2), ], value.n
   mutate(stolpec = parse_character(stolpec)) %>%
   transmute(leto = stolpec %>% strapplyc("([0-9]+)") %>% unlist() %>% parse_number(),
             spol = stolpec %>% strapplyc("^([^0-9]+)") %>% unlist() %>% factor(), dejavnost,
-            izobrazba = stolpec %>% strapplyc("([^0-9]+)$") %>% unlist() %>% factor(), povp.placa)
+            izobrazba = stolpec %>% strapplyc("([^0-9]+)$") %>% unlist() %>% factor(), povp.placa =parse_number(povp.placa))
 
 
 #uvoz druge tabele: povprecne place po statisticnih regijah
@@ -41,9 +41,12 @@ povpr.place.stat.reg. <- melt(povprecne_place_po_statisticnih_regijah[-c(1), ], 
                               id.vars = "starost", variable.name = "stolpec")%>%
   mutate(stolpec = parse_character(stolpec)) %>%
   transmute(leto = stolpec %>% strapplyc("([0-9]+)") %>% unlist() %>% parse_number(),
-            spol = stolpec %>% strapplyc("^([^0-9]+)") %>% unlist() %>% factor(), starost, povpr.placa)
+            spol = stolpec %>% strapplyc("^([^0-9]+)") %>% unlist() %>% factor(), starost,povpr.placa = parse_number(povpr.placa))
 povpr.place.stat.reg. <- separate(povpr.place.stat.reg., starost,
                                   into = c("regija", "starost"),sep=",")
+povpr.place.stat.reg. <- povpr.place.stat.reg.%>% filter(spol == "Spol - SKUPAJ",
+                                starost == "Starost - SKUPAJ",
+                                regija != "SLOVENIJA") %>%group_by(regija) %>% summarise(povprecje = mean(povpr.placa))
 
 
 #uvoz tretje tabele: povprecne place glede na izobrazbo

@@ -16,9 +16,7 @@ povpr.place.izobr<-povpr.place.izobr[!(povpr.place.izobr$spol=="Spol - SKUPAJ"),
 h <- ggplot(povpr.place.izobr) + aes(x = leto, y = povpr.placa ,color=izobrazba, shape = spol) + geom_point()+ ggtitle("povprečne plače glede na izobrazbo")
 
 
-#izračun povprečja v regijah za tabelo
-
-
+#povprečna plača v določeni regiji 
 
 zemljevid <- uvozi.zemljevid("http://www.stat.si/doc/Geo/Statisticne_regije_NUTS3.zip",
     "statisticne_regije", encoding = "Windows-1250")%>%
@@ -27,10 +25,9 @@ ggplot() + geom_polygon(data = zemljevid, aes(x = long, y = lat,
                                            group = group, fill = id)) +
   guides(fill = FALSE)
 
-ggplot() + geom_polygon(data = left_join(regija, povpr.placa,
+ggplot() + geom_polygon(data = left_join(zemljevid,povpr.place.stat.reg.,
                                          by = c("IME" = "regija")),
-                        aes(x = long, y = lat, group = group, fill = povpr.placa))
-
+                        aes(x = long, y = lat, group = group, fill = povprecje))
 
 # Uvozimo zemljevid.
 zemljevid <- uvozi.zemljevid("http://baza.fmf.uni-lj.si/OB.zip",
