@@ -10,7 +10,7 @@ output:
 #runtime: shiny
 ---
 
-```{r setup, echo=FALSE, results='hide', message=FALSE}
+```{r setup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 # Če želimo nastaviti pisave v PDF-ju, odkomentiramo
 # in sledimo navodilom v programu.
 #source("fontconfig.r", encoding = "UTF-8")
@@ -29,7 +29,7 @@ Nato pa bom primerjala minimalne plače evropskih držav z minimalno v Sloveniji
 
 # Obdelava, uvoz in čiščenje podatkov
 
-```{r uvoz, echo=FALSE, message=FALSE}
+```{r uvoz, echo=FALSE, message=FALSE,warning=FALSE}
 source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
 V tej fazi obdelave podatkov, sem uvozila tabele v CSV in HTM obliki. Podatke imam v 5 razpredelnicah, v *tidy data* obliki. 
@@ -75,7 +75,14 @@ source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 ```
 
 ```{r histogram, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Histogram števila naselij v občinah'}
-dejavnost +coord_polar() 
+dejavnost +coord_polar() + theme(legend.text = element_text(size = 5)) 
+```
+
+```{r graf sektor, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki primerja plače javnega in zasebnega sektorja '}
+sekt + geom_bar(stat = "identity", aes(fill = sektor),position = "dodge") + 
+   xlab("Izobrazba") + ylab("Povprečna plača") +
+  ggtitle("Povprečna plača glede na izobrazbo in sektor")+
+  theme_bw()
 ```
 
 ```{r graf izobrazba, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje plače glede na izobrazbo in spol'}
@@ -84,20 +91,16 @@ ggplot(izobrazba) + aes(x = leto, y = povpr.placa ,color=izobrazba, shape = spol
 
 
 ```{r graf EU, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje plače v EU in izdatke za potovanja'}
-EU.min.
+EU.min. + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
 
-```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povprečne višine plač v regijah'}
-ggplot() + geom_polygon(data = zemljevid, aes(x = lat, y = long ,
-                                           group = group, fill = id)) +
-  guides(fill = FALSE)
+```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povprečne višine plač v regijah', warning=FALSE}
 
 ggplot() + geom_polygon(data = left_join(zemljevid,povpr.place.stat.reg.,
                                          by = c("IME" = "regija")),
                         aes(x = long, y = lat, group = group, fill = povprecje))
 ```
 
-***
 
 

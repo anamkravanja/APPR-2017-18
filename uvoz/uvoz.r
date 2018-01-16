@@ -1,4 +1,5 @@
 # 2. faza: Uvoz podatkov, tidy data Ana Marija Kravanja
+warning = FALSE
 
 sl <- locale(encoding = "Windows-1250", decimal_mark = ",", grouping_mark = ".")
 

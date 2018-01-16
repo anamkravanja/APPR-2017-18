@@ -1,5 +1,4 @@
 # 3. faza: Vizualizacija podatkov
-
 library(ggplot2)
 library(dplyr)
 
@@ -8,16 +7,13 @@ EU.min. <- ggplot(primerjava_tabel) + aes(x = DRZAVA, y = place,color=leto,size 
     geom_point() +ggtitle("Minimalne plače in izdatki za potovanja v EU")
 
 
+
 #graf, ki prikazuje povprečne plače glede na izbrazbo v določenem sektorju
 sektor <- povpr.place.izobr%>% filter(spol == "Spol - SKUPAJ",
                                       izobrazba != "Izobrazba - Skupaj",
                                       sektor != "1 Javni in zasebni sektor - SKUPAJ",
                                       sektor != "11 Javni sektor - SKUPAJ")
 sekt <- ggplot(sektor,aes(izobrazba,povpr.placa))
-sekt + geom_bar(stat = "identity", aes(fill = sektor),position = "dodge") + 
-   xlab("Izobrazba") + ylab("Povprečna plača") +
-  ggtitle("Povprečna plača glede na izobrazbo in sektor")+
-  theme_bw()
 
 
 izobrazba <- povpr.place.izobr%>% filter(spol != "Spol - SKUPAJ",

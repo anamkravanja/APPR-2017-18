@@ -11,8 +11,10 @@ Nato pa bom primerjala minimalne plače evropskih držav z minimalno v Sloveniji
 Vir podatkov so Eurostat, SURS in FURS. 
 Podatki so v obliki CSV in HTML
 
+
 ### Zasnova podatkovnega modela: 
 #### Tabele: 
+
 1.	tabela (CSV): **Povprečne mesečne plače po dejavnostih, izobrazbi in spolu(v eurih)**
 * stolpci: dejavnost, obdobje (2008-2016)
 
@@ -25,8 +27,8 @@ Podatki so v obliki CSV in HTML
 4.	tabela (CSV): **Minimalne plače v evropskih državah** 
 *	stolpci: države, leta
 
-5.tabela(html): **Povprečni izdatki za potovanje posameznika v evropi**
-* stolpci : države, leta
+5.	tabela (CSV): **Povprečni izdatki za potovanje posameznika v evropi** 
+*	stolpci: države, leta
 
 
 
