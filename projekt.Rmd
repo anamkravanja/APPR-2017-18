@@ -19,7 +19,9 @@ output:
 source("lib/libraries.r", encoding = "UTF-8")
 ```
 
+
 # Izbira teme
+
 
 V svojem projektu bom analizirala plače v Sloveniji. Zanimali me bodo podatki o višini plače glede na dejavnosti ter višina plače glede na spol in starost. Analizirala bom tudi ali pride do razlik v plači med javnim in zasebnim sektorjem glede na stopnjo izobrazbe osebe. Nato pa bom primerjala minimalno plačo v Sloveniji z minimalnimi po drugih evropskih državah.
 
@@ -27,12 +29,16 @@ Nato pa bom primerjala minimalne plače evropskih držav z minimalno v Sloveniji
 
 ***
 
+
 # Obdelava, uvoz in čiščenje podatkov
+
 
 ```{r uvoz, echo=FALSE, message=FALSE,warning=FALSE}
 source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
+
 V tej fazi obdelave podatkov, sem uvozila tabele v CSV in HTM obliki. Podatke imam v 5 razpredelnicah, v *tidy data* obliki. 
+
 1. POVPRECNE PLACE PO DEJAVNOSTIH
   - `leto` - leto v katerem so bile meritve opravljene
   - `spol` - spremenljivka: moški, ženska, skupaj
@@ -51,6 +57,7 @@ V tej fazi obdelave podatkov, sem uvozila tabele v CSV in HTM obliki. Podatke im
   - `sektor` - spremenljivka : dejavnosti
   - `spol` - spremenljivka: moški, ženska, skupaj
   - `povprečna plača` - meritev : povprečna plača glede na spol,sektor in leto (v €)
+  
 **Opomba**: da bi razpredelnice res bile v obliki *tidy data*, bi morali odstraniti vrstice `SKUPAJ` (saj je izpeljan iz vrstic `moški` in `ženske`).
 
 4. MINIMALNE PLAČE V EVROPI
@@ -58,11 +65,13 @@ V tej fazi obdelave podatkov, sem uvozila tabele v CSV in HTM obliki. Podatke im
   - `drzava` - spremenljivka: država 
   - `minimalna plača` - meritev : minimalna plača v določenem letu glede na državo (v €)
 
-5.IZDATKI ZA POTOVANJA
+5. IZDATKI ZA POTOVANJA
   - `leto` - leto v katerem so bile meritve opravljene
   - `drzava` - spremenljivka: država v kateri so bile meritve opravljene
   - `izdatki namenjeni potovanju` - meritev : povprečni izdatki namenjeni potovanjem (v €)
 
+
+4. in 5. tabelo sem združila v eno tabelo, ki prikazuje podatke o minimalnih plačah in izdatkih za potovanje. 
 
 ***
 
@@ -74,9 +83,19 @@ V tretji fazi sem želela pregledno prikazati podatke.
 source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 ```
 
-```{r histogram, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Histogram števila naselij v občinah'}
+
+
+Prvi histrogram prikazuje višine povprečnih plač po posameznih dejavnostih skozi obdobje 2008-2016.Opazimo lahko velike razlike. Izstopajo predvsem informacijske in komunikacijske dejavnosti. 
+```{r histogram, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Histogram višine povprečnih plač po posameznih dejavnostih'}
 dejavnost +coord_polar() + theme(legend.text = element_text(size = 5)) 
 ```
+
+
+
+Poglejmo še stolpični graf povprečnih plač glede na izobrazbo in sektor. Vidimo, da je pri osnovnošolski, srednješolski in visokošolski izobrazbi povprečna plača najvišja v javnem sektorju-javne družbe. 
+
+
+
 
 ```{r graf sektor, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki primerja plače javnega in zasebnega sektorja '}
 sekt + geom_bar(stat = "identity", aes(fill = sektor),position = "dodge") + 
@@ -85,15 +104,20 @@ sekt + geom_bar(stat = "identity", aes(fill = sektor),position = "dodge") +
   theme_bw()
 ```
 
+
+Sedaj lahko podatke nadgradimo in pogledamo primerjavo še glede na spol in razporeditev po letih. Neglede na izobrazbo in sektor imajo moški v povprečju višje plače kot ženske. 
+
+
+
 ```{r graf izobrazba, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje plače glede na izobrazbo in spol'}
-ggplot(izobrazba) + aes(x = leto, y = povpr.placa ,color=izobrazba, shape = spol) + geom_point()+   ggtitle("Povprečne plače glede na izobrazbo in spol")
+ggplot(izobrazba) + aes(x = leto, y = povpr.placa ,color=izobrazba, shape = spol,linetype=sektor) + geom_point()+ geom_line()+ggtitle("Povprečne plače glede na izobrazbo in spol")
 ```
 
 
-```{r graf EU, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje plače v EU in izdatke za potovanja'}
-EU.min. + theme(axis.text.x = element_text(angle = 90, hjust = 1))
-```
 
+
+
+Sledi zemljevid: 
 
 ```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povprečne višine plač v regijah', warning=FALSE}
 
@@ -102,5 +126,17 @@ ggplot() + geom_polygon(data = left_join(zemljevid,povpr.place.stat.reg.,
                         aes(x = long, y = lat, group = group, fill = povprecje))
 ```
 
+Verjetno nas ne preseneča, da je v obdobju zadnjih 8 let povprečna bruto plača v najbolj razviti regiji Slovenije torej osrednjeslovenski. Najnižja pa v prekmurju.
+
+
+
+
+Ker plače vplivajo tudi na to, koliko smo pripravljeni nameniti dopustu in potovanjem, sledeč graf prikazuje povezave med minimalnimi plačami in izdatki za potovanja v evropskih državah. Zanimiva je na primer Malta, ki izstopa v tem, da glede na višino minimalne plače kar nekaj denarja nameni potovanjem. Luxemburg je najvišje glede na plačo in izdatke, Romunija pa najnižje. 
+
+
+
+```{r graf EU, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje plače v EU in izdatke za potovanja'}
+EU.min. + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
 
 
