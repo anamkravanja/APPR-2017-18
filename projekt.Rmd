@@ -87,7 +87,7 @@ source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 
 Prvi histrogram prikazuje višine povprečnih plač po posameznih dejavnostih skozi obdobje 2008-2016.Opazimo lahko velike razlike. Izstopajo predvsem informacijske in komunikacijske dejavnosti. 
 ```{r histogram, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Histogram višine povprečnih plač po posameznih dejavnostih'}
-dejavnost +coord_polar() + theme(legend.text = element_text(size = 5)) 
+dejavnost +coord_polar() + theme(legend.text = element_text(size = 6)) 
 ```
 
 
@@ -99,7 +99,7 @@ Poglejmo še stolpični graf povprečnih plač glede na izobrazbo in sektor. Vid
 
 ```{r graf sektor, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki primerja plače javnega in zasebnega sektorja '}
 sekt + geom_bar(stat = "identity", aes(fill = sektor),position = "dodge") + 
-   xlab("Izobrazba") + ylab("Povprečna plača") +
+  xlab("Izobrazba") + ylab("Povprečna plača") +
   ggtitle("Povprečna plača glede na izobrazbo in sektor")+
   theme_bw()
 ```
