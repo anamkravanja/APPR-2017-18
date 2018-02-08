@@ -116,6 +116,10 @@ Sedaj lahko podatke nadgradimo in pogledamo primerjavo še glede na spol in razp
 print(izobraz)
 ```
 
+```{r tabela predvidevanja, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Tabela, ki prikazuje predvidevanja za prihodnost',warning=FALSE}
+print(predict(lin, data.frame(leto=seq(2008,2016))))
+```
+
 
 
 
