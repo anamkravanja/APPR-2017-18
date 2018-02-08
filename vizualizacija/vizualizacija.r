@@ -8,6 +8,7 @@ EU.min. <- ggplot(primerjava_tabel) + aes(x = DRZAVA, y = place,color=leto,size 
 
 EUminimum <- EU.min. + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
+
 #graf, ki prikazuje povprečne plače glede na izbrazbo v določenem sektorju
 sektor <- povpr.place.izobr%>% filter(spol == "Spol - SKUPAJ",
                                       izobrazba != "Izobrazba - Skupaj",

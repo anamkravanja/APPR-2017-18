@@ -16,47 +16,43 @@ library(shiny)
 #    )
 #))
 
-# Define UI for app that draws a histogram ----
+# User interface ----
+
+povpr.place.stat.reg.n <- separate(povpr.place.stat.reg., starost,
+                                   into = c("regija", "starost"),sep=",")
+povpr.place.stat.reg.n <- povpr.place.stat.reg.n%>% filter(starost == "Starost - SKUPAJ",
+                                                           regija != "SLOVENIJA")
+zemljevid <- uvozi.zemljevid("http://www.stat.si/doc/Geo/Statisticne_regije_NUTS3.zip",
+                             "Statisticne_regije", encoding = "Windows-1250")%>%
+  pretvori.zemljevid()
+ggplot() + geom_polygon(data = left_join(zemljevid,povpr.place.stat.reg.n,
+                                         by = c("IME" = "regija")),
+                        aes(x = long, y = lat, group = group, fill = povpr.placa))
+
+
 ui <- fluidPage(
+  titlePanel("povprečne plače po regijah v letih 2008-2016"),
   
-  # App title ----
-  titlePanel("Hello Shiny!"),
-  
-  # Sidebar layout with input and output definitions ----
   sidebarLayout(
-    
-    # Sidebar panel for inputs ----
     sidebarPanel(
+      helpText("Glede na izbrano leto se prikaže graf, opazujemo lahko spremembe"),
       
-      # Input: Slider for the number of bins ----
-      sliderInput(inputId = "bins",
-                  label = "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
+      selectInput("var", 
+                  label = "Izberite leto",
+                  choices = c("2008","2009","2010","2011","2012","2013","2014","2015","2016"),
+                  selected = "2016"),
       
-    ),
     
-    # Main panel for displaying outputs ----
-    mainPanel(
-      
-      # Output: Histogram ----
-      plotOutput(outputId = "distPlot")
-      
+    mainPanel(plotOutput("zemljevid"))
     )
   )
 )
 
-# Define server logic required to draw a histogram ----
+
 server <- function(input, output) {
-  
-  # Histogram of the Old Faithful Geyser Data ----
-  # with requested number of bins
-  # This expression that generates a histogram is wrapped in a call
-  # to renderPlot to indicate that:
-  #
-  # 1. It is "reactive" and therefore should be automatically
-  #    re-executed when inputs (input$bins) change
-  # 2. Its output type is a plot
+  output$zemljeivd <- renderPlot({
+    percent_map()
+  })
+}
 
-
+shinyApp(ui, server)
