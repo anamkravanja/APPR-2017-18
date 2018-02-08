@@ -22,10 +22,7 @@ povp.place.dejavnost <- melt(povprecne_place_po_dejavnostih[-c(1, 2), ], value.n
   transmute(leto = stolpec %>% strapplyc("([0-9]+)") %>% unlist() %>% parse_number(),
             spol = stolpec %>% strapplyc("^([^0-9]+)") %>% unlist() %>% factor(), dejavnost,
             izobrazba = stolpec %>% strapplyc("([^0-9]+)$") %>% unlist() %>% factor(), povp.placa =parse_number(povp.placa))
-povp.place.dejavnost <- povp.place.dejavnost%>% filter(izobrazba == "Izobrazba - SKUPAJ",
-                                                        spol == "Spol - SKUPAJ",
-                                                         dejavnost != "SKD DEJAVNOST - SKUPAJ") %>%group_by(dejavnost) %>% summarise(povprecje = mean(povp.placa))
-povp.place.dejavnost<- povp.place.dejavnost[-c(20,21), ]
+
 
 #uvoz druge tabele: povprecne place po statisticnih regijah
 povprecne_place_po_statisticnih_regijah <- read_csv2("podatki/povprecne_place_po_statisticnih_regijah.csv", 
@@ -46,12 +43,6 @@ povpr.place.stat.reg. <- melt(povprecne_place_po_statisticnih_regijah[-c(1), ], 
   mutate(stolpec = parse_character(stolpec)) %>%
   transmute(leto = stolpec %>% strapplyc("([0-9]+)") %>% unlist() %>% parse_number(),
             spol = stolpec %>% strapplyc("^([^0-9]+)") %>% unlist() %>% factor(), starost,povpr.placa = parse_number(povpr.placa))
-povpr.place.stat.reg. <- separate(povpr.place.stat.reg., starost,
-                                  into = c("regija", "starost"),sep=",")
-povpr.place.stat.reg. <- povpr.place.stat.reg.%>% filter(spol == "Spol - SKUPAJ",
-                                starost == "Starost - SKUPAJ",
-                                regija != "SLOVENIJA") %>%group_by(regija) %>% summarise(povprecje = mean(povpr.placa))
-
 
 #uvoz tretje tabele: povprecne place glede na izobrazbo
 povprecne_place_glede_na_izobrazbo <- read_csv2("podatki/povprecne_place_glede_na_izobrazbo.csv", 
@@ -74,8 +65,9 @@ povpr.place.izobr <- melt(povprecne_place_glede_na_izobrazbo[-c(1), ], value.nam
   transmute(leto = stolpec %>% strapplyc("([0-9]+)") %>% unlist() %>% parse_number(),
             izobrazba = stolpec %>% strapplyc("^([^0-9]+)") %>% unlist() %>% factor(),sektor,
             povpr.placa = parse_number(povpr.placa))
+
 povpr.place.izobr <- separate(povpr.place.izobr, sektor,
-                                  into = c("sektor", "spol"),sep=",")
+                              into = c("sektor", "spol"),sep=",")
 
 
 #uvoz četrte tabele: minimalne_place_v_Evropi

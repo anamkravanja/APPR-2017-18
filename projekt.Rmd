@@ -45,6 +45,10 @@ V tej fazi obdelave podatkov, sem uvozila tabele v CSV in HTM obliki. Podatke im
   - `dejavnost` - spremenljivka : dejavnosti
   - `povprečna plača` - meritev : povprečna plača glede na leto, spol in dejavnost (v €)
 
+```{r povprecne_place_po_dejavnostih, echo=FALSE, message=FALSE}
+kable(head(povprecne_place_po_dejavnostih))
+```
+
 2. POVPREČNE PLAČE PO STATISTIČNIH REGIJAH
   - `leto` - leto v katerem so bile meritve opravljene
   - `spol` - spremenljivka: moški, ženska, skupaj
@@ -64,12 +68,14 @@ V tej fazi obdelave podatkov, sem uvozila tabele v CSV in HTM obliki. Podatke im
   - `leto` - leto v katerem so bile meritve opravljene
   - `drzava` - spremenljivka: država 
   - `minimalna plača` - meritev : minimalna plača v določenem letu glede na državo (v €)
-
+  
 5. IZDATKI ZA POTOVANJA
   - `leto` - leto v katerem so bile meritve opravljene
   - `drzava` - spremenljivka: država v kateri so bile meritve opravljene
   - `izdatki namenjeni potovanju` - meritev : povprečni izdatki namenjeni potovanjem (v €)
-
+```{r izdatki_za_potovanja, echo=FALSE, message=FALSE}
+kable(head(izdatki_za_potovanja))
+```
 
 4. in 5. tabelo sem združila v eno tabelo, ki prikazuje podatke o minimalnih plačah in izdatkih za potovanje. 
 
@@ -87,7 +93,7 @@ source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 
 Prvi histrogram prikazuje višine povprečnih plač po posameznih dejavnostih skozi obdobje 2008-2016.Opazimo lahko velike razlike. Izstopajo predvsem informacijske in komunikacijske dejavnosti. 
 ```{r histogram, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Histogram višine povprečnih plač po posameznih dejavnostih'}
-dejavnost +coord_polar() + theme(legend.text = element_text(size = 6)) 
+print(dejavnosti)
 ```
 
 
@@ -98,10 +104,7 @@ Poglejmo še stolpični graf povprečnih plač glede na izobrazbo in sektor. Vid
 
 
 ```{r graf sektor, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki primerja plače javnega in zasebnega sektorja '}
-sekt + geom_bar(stat = "identity", aes(fill = sektor),position = "dodge") + 
-  xlab("Izobrazba") + ylab("Povprečna plača") +
-  ggtitle("Povprečna plača glede na izobrazbo in sektor")+
-  theme_bw()
+print(sektorji)
 ```
 
 
@@ -110,9 +113,8 @@ Sedaj lahko podatke nadgradimo in pogledamo primerjavo še glede na spol in razp
 
 
 ```{r graf izobrazba, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje plače glede na izobrazbo in spol'}
-ggplot(izobrazba) + aes(x = leto, y = povpr.placa ,color=izobrazba, shape = spol,linetype=sektor) + geom_point()+ geom_line()+ggtitle("Povprečne plače glede na izobrazbo in spol")
+print(izobraz)
 ```
-
 
 
 
@@ -120,7 +122,6 @@ ggplot(izobrazba) + aes(x = leto, y = povpr.placa ,color=izobrazba, shape = spol
 Sledi zemljevid: 
 
 ```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povprečne višine plač v regijah', warning=FALSE}
-
 ggplot() + geom_polygon(data = left_join(zemljevid,povpr.place.stat.reg.,
                                          by = c("IME" = "regija")),
                         aes(x = long, y = lat, group = group, fill = povprecje))
@@ -136,7 +137,7 @@ Ker plače vplivajo tudi na to, koliko smo pripravljeni nameniti dopustu in poto
 
 
 ```{r graf EU, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje plače v EU in izdatke za potovanja'}
-EU.min. + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+print(EUminimum)
 ```
 
 
