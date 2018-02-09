@@ -7,7 +7,7 @@ output:
     includes:
       in_header: lib/styles.sty
     latex_engine: xelatex
-#runtime: shiny
+runtime: shiny
 ---
 
 ```{r setup, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
@@ -126,7 +126,7 @@ print(predict(lin, data.frame(leto=seq(2008,2016))))
 Sledi zemljevid: 
 
 ```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povprečne višine plač v regijah', warning=FALSE}
-ggplot() + geom_polygon(data = left_join(zemljevid,povpr.place.stat.reg.,
+ggplot() + geom_polygon(data = left_join(zemljevid,povpr.place.stat.reg.n,
                                          by = c("IME" = "regija")),
                         aes(x = long, y = lat, group = group, fill = povprecje))
 ```
@@ -144,4 +144,6 @@ Ker plače vplivajo tudi na to, koliko smo pripravljeni nameniti dopustu in poto
 print(EUminimum)
 ```
 
-
+```{r shiny, echo = FALSE}
+shinyAppDir("shiny", options=list(width="100%", height=500))
+```

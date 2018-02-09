@@ -3,11 +3,11 @@ library(ggplot2)
 library(dplyr)
 
 #graf, ki primerja minimalne plače v Evropi in izdatke za potovanja v istih evropskih državah
-EU.min. <- ggplot(primerjava_tabel) + aes(x = DRZAVA, y = place,color=leto,size = izdatki) + 
+EU.min. <- ggplot(primerjava_tabel) + aes(x = DRZAVA, y = place,color=factor(leto),size = izdatki) + 
     geom_point() +ggtitle("Minimalne plače in izdatki za potovanja v EU")
 
 EUminimum <- EU.min. + theme(axis.text.x = element_text(angle = 90, hjust = 1))
-
+EUminimum <- EUminimum  + guides(color = guide_legend("Leto"))
 
 #graf, ki prikazuje povprečne plače glede na izbrazbo v določenem sektorju
 sektor <- povpr.place.izobr%>% filter(spol == "Spol - SKUPAJ",
@@ -49,11 +49,9 @@ dejavnosti <- dejavnost +coord_polar() + theme(legend.text = element_text(size =
 
 
 #povprečna plača v določeni regiji 
-povpr.place.stat.reg. <- separate(povpr.place.stat.reg., starost,
-                                  into = c("regija", "starost"),sep=",")
-povpr.place.stat.reg. <- povpr.place.stat.reg.%>% filter(spol == "Spol - SKUPAJ",
-                                                         starost == "Starost - SKUPAJ",
-                                                         regija != "SLOVENIJA") %>%group_by(regija) %>% summarise(povprecje = mean(povpr.placa))
+povpr.place.stat.reg.n <- povpr.place.stat.reg.%>%
+  filter(spol == "Spol - SKUPAJ", starost == "Starost - SKUPAJ", regija != "SLOVENIJA") %>%
+  group_by(regija) %>% summarise(povprecje = mean(povpr.placa))
 
 
 zemljevid <- uvozi.zemljevid("http://www.stat.si/doc/Geo/Statisticne_regije_NUTS3.zip",
