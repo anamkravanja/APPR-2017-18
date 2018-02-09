@@ -21,8 +21,13 @@ library(shiny)
 library(shiny)
 
 shinyUI(fluidPage(
+  
+  titlePanel("Spreminajnje skozi obdobja in glede na države "),
+
+
   tabsetPanel(
     tabPanel("Minimalne plače in izdatki za potovanja",
+             titlePanel("Minimalne plače in izdatki za porovanja v EU"),
              sidebarPanel(
                selectInput("drzava",
                            label = "Izberite državo",
@@ -34,7 +39,7 @@ shinyUI(fluidPage(
     tabPanel("Povprečne plače po regijah",
              titlePanel("Povprečne plače po regijah v letih 2008-2016"),
              sidebarPanel(
-               selectInput("leto",
+               radioButtons("leto",
                            label = "Izberite leto",
                            choices = 2008:2016,
                            selected = 2016)

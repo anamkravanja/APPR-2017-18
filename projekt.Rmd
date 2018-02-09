@@ -122,13 +122,12 @@ print(predict(lin, data.frame(leto=seq(2008,2016))))
 
 
 
-
 Sledi zemljevid: 
 
 ```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povprečne višine plač v regijah', warning=FALSE}
 ggplot() + geom_polygon(data = left_join(zemljevid,povpr.place.stat.reg.n,
                                          by = c("IME" = "regija")),
-                        aes(x = long, y = lat, group = group, fill = povprecje))
+                        aes(x = long, y = lat, group = group, fill = povprecje)) + scale_fill_gradient(low="pink", high="purple")
 ```
 
 Verjetno nas ne preseneča, da je v obdobju zadnjih 8 let povprečna bruto plača v najbolj razviti regiji Slovenije torej osrednjeslovenski. Najnižja pa v prekmurju.
@@ -144,6 +143,13 @@ Ker plače vplivajo tudi na to, koliko smo pripravljeni nameniti dopustu in poto
 print(EUminimum)
 ```
 
+Da lahko hitro vidimo povezave oziroma si lažje predstavljamo spreminjanja si poglejmo naslednji prikaz. 
+
 ```{r shiny, echo = FALSE}
 shinyAppDir("shiny", options=list(width="100%", height=500))
 ```
+
+
+Pri prvem prikazu lahko primerjamo zelo različna gibanja, ki jih ljudje namenijo potovanjem glede na minimalne plače v tej državi. Pričakovali bi, da bi pri nižji plači za potovanja porabili manj sredstev kot tisti, katerih plača je višja. Opazimo, da večinoma je tako, a so države k izstopanjo.
+
+Če pa pogledamo še drug del in opazujemo plače v Sloveniji glede na regijo, je jasno vidno, da je v povprečju najvišja plača v osrednjeslovenski regiji, najnižja pa v prekmurju. Skozi leta e nekoliko viša, vendar razmerje med regijami ostaja približno enako. 

@@ -99,5 +99,3 @@ primerjava_tabel <- inner_join(minimalne_place_v_evropi,izdatki_za_potovanja)
 primerjava_tabel[87,2] <- "Germany"
 primerjava_tabel[66,2] <- "Germany"
 
-
-
