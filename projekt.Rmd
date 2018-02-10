@@ -27,6 +27,8 @@ V svojem projektu bom analizirala plače v Sloveniji. Zanimali me bodo podatki o
 
 Nato pa bom primerjala minimalne plače evropskih držav z minimalno v Sloveniji. Ter pogledala vzporednice med višanjem minimalne plače in povprečnimi izdatki za potovanje v letih od 2012-2016.
 
+
+
 ***
 
 

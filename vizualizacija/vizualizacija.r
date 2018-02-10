@@ -26,10 +26,6 @@ izobrazba <- povpr.place.izobr%>% filter(spol != "Spol - SKUPAJ",
                                          sektor != "11 Javni sektor - SKUPAJ")
 
 izobraz <- ggplot(izobrazba) + aes(x = leto, y = povpr.placa ,color=izobrazba, shape = spol,linetype=sektor) + geom_point()+ geom_line()+ggtitle("Povprečne plače glede na izobrazbo in spol")
-izo <- izobraz + geom_smooth(method = "auto")
-lin <- lm(data = izobrazba,  povpr.placa ~ leto )
-predict(lin, data.frame(leto=seq(2008,2016)))
-
 
 #povprečna plača glede na dejavnost
 povp.place.dejavnost <- povp.place.dejavnost%>% filter(izobrazba == "Izobrazba - SKUPAJ",
