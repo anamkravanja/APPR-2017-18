@@ -23,9 +23,12 @@ source("lib/libraries.r", encoding = "UTF-8")
 # Izbira teme
 
 
-V svojem projektu bom analizirala plače v Sloveniji. Zanimali me bodo podatki o višini plače glede na dejavnosti ter višina plače glede na spol in starost. Analizirala bom tudi ali pride do razlik v plači med javnim in zasebnim sektorjem glede na stopnjo izobrazbe osebe. Nato pa bom primerjala minimalno plačo v Sloveniji z minimalnimi po drugih evropskih državah.
+V svojem projektu bom analizirala plače v Sloveniji. Zanimali me bodo podatki o višini plače glede na dejavnosti ter višina plače glede na spol in starost. Analizirala bom tudi ali pride do razlik v plači med javnim in zasebnim sektorjem glede na stopnjo izobrazbe osebe. 
 
-Nato pa bom primerjala minimalne plače evropskih držav z minimalno v Sloveniji. Ter pogledala vzporednice med višanjem minimalne plače in povprečnimi izdatki za potovanje v letih od 2012-2016.
+Nato pa bom primerjala minimalne plače evropskih držav z minimalno v Sloveniji, ter pogledala vzporednice med višanjem minimalne plače in povprečnimi izdatki za potovanje v letih od 2012-2016. Pri tem bom pozorna na povezave, ki se bodo pojavile in jih dodatno analizirala. 
+
+
+![](http://www.evangelistjoshuaorekhie.com/wp-content/uploads/2017/07/money.jpeg)
 
 
 
@@ -46,10 +49,6 @@ V tej fazi obdelave podatkov, sem uvozila tabele v CSV in HTM obliki. Podatke im
   - `spol` - spremenljivka: moški, ženska, skupaj
   - `dejavnost` - spremenljivka : dejavnosti
   - `povprečna plača` - meritev : povprečna plača glede na leto, spol in dejavnost (v €)
-
-```{r povprecne_place_po_dejavnostih, echo=FALSE, message=FALSE}
-kable(head(povprecne_place_po_dejavnostih))
-```
 
 2. POVPREČNE PLAČE PO STATISTIČNIH REGIJAH
   - `leto` - leto v katerem so bile meritve opravljene
@@ -85,15 +84,13 @@ kable(head(izdatki_za_potovanja))
 
 # Analiza in vizualizacija podatkov
 
-V tretji fazi sem želela pregledno prikazati podatke.
-
 ```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE}
 source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 ```
 
 
-
 Prvi histrogram prikazuje višine povprečnih plač po posameznih dejavnostih skozi obdobje 2008-2016.Opazimo lahko velike razlike. Izstopajo predvsem informacijske in komunikacijske dejavnosti. 
+
 ```{r histogram, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Histogram višine povprečnih plač po posameznih dejavnostih'}
 print(dejavnosti)
 ```
@@ -113,13 +110,8 @@ print(sektorji)
 Sedaj lahko podatke nadgradimo in pogledamo primerjavo še glede na spol in razporeditev po letih. Neglede na izobrazbo in sektor imajo moški v povprečju višje plače kot ženske. 
 
 
-
 ```{r graf izobrazba, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje plače glede na izobrazbo in spol'}
 print(izobraz)
-```
-
-```{r tabela predvidevanja, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Tabela, ki prikazuje predvidevanja za prihodnost',warning=FALSE}
-print(predict(lin, data.frame(leto=seq(2008,2016))))
 ```
 
 
@@ -139,6 +131,20 @@ Verjetno nas ne preseneča, da je v obdobju zadnjih 8 let povprečna bruto plač
 
 Ker plače vplivajo tudi na to, koliko smo pripravljeni nameniti dopustu in potovanjem, sledeč graf prikazuje povezave med minimalnimi plačami in izdatki za potovanja v evropskih državah. Zanimiva je na primer Malta, ki izstopa v tem, da glede na višino minimalne plače kar nekaj denarja nameni potovanjem. Luxemburg je najvišje glede na plačo in izdatke, Romunija pa najnižje. 
 
+# Napredna analiza podatkov
+```{r analiza, echo=FALSE, message=FALSE, warning=FALSE}
+source("analiza/analiza.r", encoding = "UTF-8")
+```
+
+```{r tabela predvidevanja, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Tabela, ki prikazuje predvidevanja za prihodnost',warning=FALSE}
+print(napoved)
+```
+
+
+```{r graf predvidevanja, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje odvisnost plače od izdatkov',warning=FALSE}
+print(koncen_graf)
+```
+
 
 
 ```{r graf EU, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje plače v EU in izdatke za potovanja'}
@@ -155,3 +161,6 @@ shinyAppDir("shiny", options=list(width="100%", height=500))
 Pri prvem prikazu lahko primerjamo zelo različna gibanja, ki jih ljudje namenijo potovanjem glede na minimalne plače v tej državi. Pričakovali bi, da bi pri nižji plači za potovanja porabili manj sredstev kot tisti, katerih plača je višja. Opazimo, da večinoma je tako, a so države k izstopanjo.
 
 Če pa pogledamo še drug del in opazujemo plače v Sloveniji glede na regijo, je jasno vidno, da je v povprečju najvišja plača v osrednjeslovenski regiji, najnižja pa v prekmurju. Skozi leta e nekoliko viša, vendar razmerje med regijami ostaja približno enako. 
+
+
+

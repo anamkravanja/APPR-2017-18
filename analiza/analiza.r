@@ -27,11 +27,11 @@ summary(fit)
 graf <- graf +geom_smooth(method = lm)
 novi_izdatki <- data.frame(primerajava_tabel)
 predict(fit,novi_izdatki)
-napoved <- novi_izdatki %>% mutate(izdatki = predict(fit, .))
+napoved1 <- novi_izdatki %>% mutate(izdatki = predict(fit, .))
 
 koncen_graf <- graf + geom_point(shape = 1) +
   geom_smooth(method = lm)+
-  geom_point(data = napoved,color='purple',size=3)
+  geom_point(data = napoved1,color='purple',size=3)
 
 
 
