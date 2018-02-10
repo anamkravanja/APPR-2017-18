@@ -88,7 +88,6 @@ kable(head(izdatki_za_potovanja))
 source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 ```
 
-
 Prvi histrogram prikazuje višine povprečnih plač po posameznih dejavnostih skozi obdobje 2008-2016.Opazimo lahko velike razlike. Izstopajo predvsem informacijske in komunikacijske dejavnosti. 
 
 ```{r histogram, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Histogram višine povprečnih plač po posameznih dejavnostih'}
@@ -131,6 +130,10 @@ Verjetno nas ne preseneča, da je v obdobju zadnjih 8 let povprečna bruto plač
 
 Ker plače vplivajo tudi na to, koliko smo pripravljeni nameniti dopustu in potovanjem, sledeč graf prikazuje povezave med minimalnimi plačami in izdatki za potovanja v evropskih državah. Zanimiva je na primer Malta, ki izstopa v tem, da glede na višino minimalne plače kar nekaj denarja nameni potovanjem. Luxemburg je najvišje glede na plačo in izdatke, Romunija pa najnižje. 
 
+```{r graf EU, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje plače v EU in izdatke za potovanja'}
+print(EUminimum)
+```
+
 # Napredna analiza podatkov
 ```{r analiza, echo=FALSE, message=FALSE, warning=FALSE}
 source("analiza/analiza.r", encoding = "UTF-8")
@@ -142,14 +145,9 @@ print(napoved)
 
 
 ```{r graf predvidevanja, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje odvisnost plače od izdatkov',warning=FALSE}
-print(koncen_graf)
+print(koncen_graf3)
 ```
 
-
-
-```{r graf EU, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje plače v EU in izdatke za potovanja'}
-print(EUminimum)
-```
 
 Da lahko hitro vidimo povezave oziroma si lažje predstavljamo spreminjanja si poglejmo naslednji prikaz. 
 

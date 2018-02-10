@@ -16,6 +16,7 @@ require(dplyr)
 izo <- izobraz + geom_smooth(method = "loess")
 lin <- lm(data = izobrazba,  povpr.placa ~ leto )
 predict(lin, data.frame(leto=seq(2016,2025)))
+
 #izris napovedi
 nova <- data.frame(leto=seq(2016,2025))
 napoved <- nova %>% mutate(povpr.placa=predict(lin,.))
@@ -25,16 +26,21 @@ graf <- ggplot(primerjava_tabel, aes(x=place,y=izdatki)) + geom_point()
 fit <- lm(izdatki ~ place, data = primerjava_tabel)
 summary(fit)
 graf <- graf +geom_smooth(method = lm)
-novi_izdatki <- data.frame(primerajava_tabel)
+novi_izdatki <- data.frame(primerjava_tabel)
 predict(fit,novi_izdatki)
 napoved1 <- novi_izdatki %>% mutate(izdatki = predict(fit, .))
 
-koncen_graf <- graf + geom_point(shape = 1) +
+
+koncen_graf1 <- graf + geom_point(shape = 1) +
   geom_smooth(method = lm)+
-  geom_point(data = napoved1,color='purple',size=3)
+  geom_point(data = napoved1,color='pink',size=3)
 
 
+koncen_graf2 <- koncen_graf + geom_point(shape = 1) +
+  geom_smooth(method = "auto",color = "coral")
 
+graf3 <- koncen_graf2 + geom_point() +
+  geom_smooth(method = "lm", formula = y ~ splines::bs(x, 3), se = FALSE,color = "aquamarine1")
 
 
 
