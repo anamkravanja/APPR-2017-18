@@ -26,12 +26,6 @@ library(shiny)
 library(shiny)
 
 shinyServer(function(input, output) {
-  output$graf.min <- renderPlot({
-    ggplot(primerjava_tabel %>% filter(DRZAVA == input$drzava)) +
-      aes(x = leto, y = place, size = izdatki) + geom_point() +
-      ggtitle("Minimalne plače in izdatki za potovanja")
-  })
-  
   output$zemljevid <- renderPlot({
     ggplot() + geom_polygon(data = povpr.place.stat.reg. %>% filter(spol == "Spol - SKUPAJ",
                                                                     starost == "Starost - SKUPAJ",
@@ -39,6 +33,11 @@ shinyServer(function(input, output) {
                                                                     leto == input$leto) %>%
                               right_join(zemljevid, by = c("regija" = "IME")),
                             aes(x = long, y = lat, group = group, fill = povpr.placa))
+  })
+  output$graf.min <- renderPlot({
+    ggplot(primerjava_tabel %>% filter(DRZAVA == input$drzava)) +
+      aes(x = leto, y = place, size = izdatki) + geom_point() +
+      ggtitle("Minimalne plače in izdatki za potovanja")
   })
 })
 

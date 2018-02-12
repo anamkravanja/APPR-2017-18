@@ -42,7 +42,7 @@ Nato pa bom primerjala minimalne plače evropskih držav z minimalno v Sloveniji
 source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
 
-V tej fazi obdelave podatkov, sem uvozila tabele v CSV in HTM obliki. Podatke imam v 5 razpredelnicah, v *tidy data* obliki. 
+V tej fazi obdelave podatkov, sem uvozila tabele v CSV in HTML obliki. Podatke imam v 5 razpredelnicah, v *tidy data* obliki. 
 
 1. POVPRECNE PLACE PO DEJAVNOSTIH
   - `leto` - leto v katerem so bile meritve opravljene
@@ -88,16 +88,16 @@ kable(head(izdatki_za_potovanja))
 source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 ```
 
-Prvi histrogram prikazuje višine povprečnih plač po posameznih dejavnostih skozi obdobje 2008-2016.Opazimo lahko velike razlike. Izstopajo predvsem informacijske in komunikacijske dejavnosti. 
+Prvi graf prikazuje višine povprečnih plač po posameznih dejavnostih skozi obdobje 2008-2016.Opazimo lahko velike razlike. Izstopajo predvsem informacijske in komunikacijske dejavnosti,finančne in zavarovalniške dejavnosti, sledi oskrba z električno energijo, plinom in paro.
+Najnižjo povprečno plačo so prejemali zaposleni v gostinjstvu.
 
-```{r histogram, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Histogram višine povprečnih plač po posameznih dejavnostih'}
-print(dejavnosti)
+```{r graf dejavnost, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf višine povprečnih plač po posameznih dejavnostih'}
+print(dejavnost)
 ```
 
 
 
-Poglejmo še stolpični graf povprečnih plač glede na izobrazbo in sektor. Vidimo, da je pri osnovnošolski, srednješolski in visokošolski izobrazbi povprečna plača najvišja v javnem sektorju-javne družbe. 
-
+Poglejmo še stolpični graf povprečnih plač glede na izobrazbo in sektor. Vidimo, da je pri osnovnošolski, srednješolski in visokošolski izobrazbi povprečna plača najvišja v javnem sektorju-javne družbe.
 
 
 
@@ -106,7 +106,7 @@ print(sektorji)
 ```
 
 
-Sedaj lahko podatke nadgradimo in pogledamo primerjavo še glede na spol in razporeditev po letih. Neglede na izobrazbo in sektor imajo moški v povprečju višje plače kot ženske. 
+Sedaj lahko podatke nadgradimo in pogledamo primerjavo še glede na spol in razporeditev po letih. Neglede na izobrazbo in sektor imajo moški v povprečju višje plače kot ženske. Vidimo lahko, da je porazdelitev bruto plač izredno asimetrična. Mediana mesečne bruto plače deli populacijo na dva dela. Spodaj so tisti, ki imajo osnovnošolsko in srednješolsko izobrazbo, nad njo pa tisti z višje in visokošilsko izobrazbo. Neglede na sektor je plača pri moških v povprečju višja od plače žensk.  
 
 
 ```{r graf izobrazba, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje plače glede na izobrazbo in spol'}
@@ -123,8 +123,7 @@ ggplot() + geom_polygon(data = left_join(zemljevid,povpr.place.stat.reg.n,
                         aes(x = long, y = lat, group = group, fill = povprecje)) + scale_fill_gradient(low="pink", high="purple")
 ```
 
-Verjetno nas ne preseneča, da je v obdobju zadnjih 8 let povprečna bruto plača v najbolj razviti regiji Slovenije torej osrednjeslovenski. Najnižja pa v prekmurju.
-
+Verjetno nas ne preseneča, da je v obdobju zadnjih 8 let povprečna bruto plača v najbolj razviti regiji Slovenije torej osrednjeslovenski. Najnižja pa v prekmurju.Mogoče nas preseneti podatek, da je razlika med regijama za kar 400€.Če si natančneje pogledamo leto 2014, so bili najbolje plačani v ljubljanski regiji. Povprečna plača je znašala 1.846€. Najnižje plače pa prejemajo v Zasavju, kjer je bila povprečna plača 1.452€.
 
 
 
@@ -135,19 +134,17 @@ print(EUminimum)
 ```
 
 # Napredna analiza podatkov
+
 ```{r analiza, echo=FALSE, message=FALSE, warning=FALSE}
 source("analiza/analiza.r", encoding = "UTF-8")
 ```
 
+Poglejmo si napovedi plač v Sloveniji za prihodnje obdobje:
+
 ```{r tabela predvidevanja, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Tabela, ki prikazuje predvidevanja za prihodnost',warning=FALSE}
 print(napoved)
 ```
-
-
-```{r graf predvidevanja, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje odvisnost plače od izdatkov',warning=FALSE}
-print(koncen_graf3)
-```
-
+Izboljšanje razmer na trgu dela se kažejo tudi v povečanju plač. Rast povprečne bruto plače v zasebnem sektorju je spodbujena z gospodarsko rastjo in s tem povezanimi dobrimi rezultati. Plače so torej višje skozi leta, linerani model nam napoveduje torej nadaljno rast.
 
 Da lahko hitro vidimo povezave oziroma si lažje predstavljamo spreminjanja si poglejmo naslednji prikaz. 
 
@@ -156,9 +153,21 @@ shinyAppDir("shiny", options=list(width="100%", height=500))
 ```
 
 
-Pri prvem prikazu lahko primerjamo zelo različna gibanja, ki jih ljudje namenijo potovanjem glede na minimalne plače v tej državi. Pričakovali bi, da bi pri nižji plači za potovanja porabili manj sredstev kot tisti, katerih plača je višja. Opazimo, da večinoma je tako, a so države k izstopanjo.
+Pri prvem prikazu opazujemo plače v Sloveniji glede na regijo, jasno je vidno, da je v povprečju najvišja plača v osrednjeslovenski regiji, najnižja pa v prekmurju. Skozi leta se nekoliko viša, vendar razmerje med regijami ostaja približno enako. 
 
-Če pa pogledamo še drug del in opazujemo plače v Sloveniji glede na regijo, je jasno vidno, da je v povprečju najvišja plača v osrednjeslovenski regiji, najnižja pa v prekmurju. Skozi leta e nekoliko viša, vendar razmerje med regijami ostaja približno enako. 
+Če pogledamo še drugi del, lahko vidimo zelo različe odvisnosti med izdatki za potovanja in minimalnimi plačami glede na države. Pričakovali bi, da bi pri nižji plači za potovanja porabili manj sredstev kot tisti, katerih plača je višja. Opazimo, da večinoma je tako, a so države ki izstopanjo. V Romuniji je zelo lepo vidno da se z višanjem minimalne plače višajo izdatki za potovanja. Zanimiva je, kot sme že prej omenila Malta, kjer so državljani leta 2012 namenili več izdatkov za potovanja kot 4 leta kasneje, kljub temu, da se je minimalna plača zvišala. 
+
+Zato si sedaj natančneje poglejmo odvisnost izdatkov in minimalnih plač.
+
+
+```{r graf predvidevanja, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje odvisnost plače od izdatkov',warning=FALSE}
+print(graf3)
+```
+
+![](http://www.opodo.co.uk/fileadmin/media/img/UK-IE/deals/header.jpg)
+
+
+
 
 
 

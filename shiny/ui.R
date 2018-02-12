@@ -26,6 +26,16 @@ shinyUI(fluidPage(
 
 
   tabsetPanel(
+    tabPanel("Povprečne plače po regijah",
+             titlePanel("Povprečne plače po regijah v letih 2008-2016"),
+             sidebarPanel(
+               radioButtons("leto",
+                            label = "Izberite leto",
+                            choices = 2008:2016,
+                            selected = 2016)
+             ),
+             mainPanel(plotOutput("zemljevid"))
+    ),
     tabPanel("Minimalne plače in izdatki za potovanja",
              titlePanel("Minimalne plače in izdatki za porovanja v EU"),
              sidebarPanel(
@@ -35,16 +45,7 @@ shinyUI(fluidPage(
                            selected = "Slovenia")
              ),
              mainPanel(plotOutput("graf.min"))
-    ),
-    tabPanel("Povprečne plače po regijah",
-             titlePanel("Povprečne plače po regijah v letih 2008-2016"),
-             sidebarPanel(
-               radioButtons("leto",
-                           label = "Izberite leto",
-                           choices = 2008:2016,
-                           selected = 2016)
-             ),
-             mainPanel(plotOutput("zemljevid"))
     )
+    
   )
 ))

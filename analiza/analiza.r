@@ -36,7 +36,7 @@ koncen_graf1 <- graf + geom_point(shape = 1) +
   geom_point(data = napoved1,color='pink',size=3)
 
 
-koncen_graf2 <- koncen_graf + geom_point(shape = 1) +
+koncen_graf2 <- koncen_graf1 + geom_point(shape = 1) +
   geom_smooth(method = "auto",color = "coral")
 
 graf3 <- koncen_graf2 + geom_point() +

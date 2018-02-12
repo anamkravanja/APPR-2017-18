@@ -39,9 +39,10 @@ dejavnost <- ggplot(povp.place.dejavnost, aes(dejavnost,povprecje,fill =dejavnos
   theme(axis.ticks = element_blank(),
         axis.text = element_blank(),
         axis.title = element_blank(),
-        axis.line = element_blank())
+        axis.line = element_blank(),
+        legend.text = element_text(size = 6))
 
-dejavnosti <- dejavnost +coord_polar() + theme(legend.text = element_text(size = 7)) 
+dejavnosti <- dejavnost +coord_polar() + theme(legend.text = element_text(size = 7)) + guides(fill=FALSE)
 
 
 #povprečna plača v določeni regiji 
