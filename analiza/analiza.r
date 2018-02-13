@@ -30,7 +30,6 @@ novi_izdatki <- data.frame(primerjava_tabel)
 predict(fit,novi_izdatki)
 napoved1 <- novi_izdatki %>% mutate(izdatki = predict(fit, .))
 
-
 koncen_graf1 <- graf + geom_point(shape = 1) +
   geom_smooth(method = lm)+
   geom_point(data = napoved1,color='pink',size=3)
@@ -39,8 +38,7 @@ koncen_graf1 <- graf + geom_point(shape = 1) +
 koncen_graf2 <- koncen_graf1 + geom_point(shape = 1) +
   geom_smooth(method = "auto",color = "coral")
 
-graf3 <- koncen_graf2 + geom_point() +
+graf3 <- koncen_graf2 + geom_point() + scale_x_continuous(name="plače") +
   geom_smooth(method = "lm", formula = y ~ splines::bs(x, 3), se = FALSE,color = "aquamarine1")
-
 
 

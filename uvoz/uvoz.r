@@ -32,7 +32,7 @@ stolpci1 <- data.frame(spol = povprecne_place_po_statisticnih_regijah[1,] %>% un
                       leto = colnames(povprecne_place_po_statisticnih_regijah) %>%
                       { gsub("X.*", NA, .) } %>% parse_number()) %>% 
     fill(1:2) %>% apply(1, paste, collapse = "")
-stolpci1[1] <- "statisticna regija"
+stolpci1[1] <- "statisticna regija" 
 stolpci1[2] <- "starost"
 colnames(povprecne_place_po_statisticnih_regijah) <-stolpci1
 povprecne_place_po_statisticnih_regijah <- fill(povprecne_place_po_statisticnih_regijah,"statisticna regija")[-c(2,11,20,29,38,47,56,65,74,83,92,110), ]
@@ -42,10 +42,13 @@ povpr.place.stat.reg. <- melt(povprecne_place_po_statisticnih_regijah[-c(1), ], 
                               id.vars = "starost", variable.name = "stolpec")%>%
   mutate(stolpec = parse_character(stolpec)) %>%
   transmute(leto = stolpec %>% strapplyc("([0-9]+)") %>% unlist() %>% parse_number(),
-            spol = stolpec %>% strapplyc("^([^0-9]+)") %>% unlist() %>% factor(), starost,povpr.placa = parse_number(povpr.placa))
+            spol = stolpec %>% strapplyc("^([^0-9]+)") %>% unlist() %>% factor(), starost,
+            povpr.placa = parse_number(povpr.placa))
 
 povpr.place.stat.reg. <- separate(povpr.place.stat.reg., starost,
                                   into = c("regija", "starost"), sep=",")
+
+
 
 #uvoz tretje tabele: povprecne place glede na izobrazbo
 povprecne_place_glede_na_izobrazbo <- read_csv2("podatki/povprecne_place_glede_na_izobrazbo.csv", 

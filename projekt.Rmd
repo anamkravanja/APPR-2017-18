@@ -135,6 +135,8 @@ print(EUminimum)
 
 # Napredna analiza podatkov
 
+Pri napredni analizi sem opazovala povezave med podatki in napovedi za prihodnje obdobje.
+
 ```{r analiza, echo=FALSE, message=FALSE, warning=FALSE}
 source("analiza/analiza.r", encoding = "UTF-8")
 ```
@@ -144,7 +146,8 @@ Poglejmo si napovedi plač v Sloveniji za prihodnje obdobje:
 ```{r tabela predvidevanja, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Tabela, ki prikazuje predvidevanja za prihodnost',warning=FALSE}
 print(napoved)
 ```
-Izboljšanje razmer na trgu dela se kažejo tudi v povečanju plač. Rast povprečne bruto plače v zasebnem sektorju je spodbujena z gospodarsko rastjo in s tem povezanimi dobrimi rezultati. Plače so torej višje skozi leta, linerani model nam napoveduje torej nadaljno rast.
+
+Izboljšanje razmer na trgu dela se kažejo tudi v povečanju plač. Rast povprečne bruto plače v zasebnem sektorju je spodbujena z gospodarsko rastjo in s tem povezanimi dobrimi rezultati. Plače so višje skozi leta, linerani model nam napoveduje torej nadaljno rast.
 
 Da lahko hitro vidimo povezave oziroma si lažje predstavljamo spreminjanja si poglejmo naslednji prikaz. 
 
@@ -153,18 +156,32 @@ shinyAppDir("shiny", options=list(width="100%", height=500))
 ```
 
 
-Pri prvem prikazu opazujemo plače v Sloveniji glede na regijo, jasno je vidno, da je v povprečju najvišja plača v osrednjeslovenski regiji, najnižja pa v prekmurju. Skozi leta se nekoliko viša, vendar razmerje med regijami ostaja približno enako. 
+Pri prvem prikazu opazujemo plače v Sloveniji glede na regijo, jasno je vidno, da je v povprečju skozi vsa leta najvišja plača v osrednjeslovenski regiji, najnižja pa v prekmurju. Razmerje med regijami skozi čas ostaja približno enako. 
+
 
 Če pogledamo še drugi del, lahko vidimo zelo različe odvisnosti med izdatki za potovanja in minimalnimi plačami glede na države. Pričakovali bi, da bi pri nižji plači za potovanja porabili manj sredstev kot tisti, katerih plača je višja. Opazimo, da večinoma je tako, a so države ki izstopanjo. V Romuniji je zelo lepo vidno da se z višanjem minimalne plače višajo izdatki za potovanja. Zanimiva je, kot sme že prej omenila Malta, kjer so državljani leta 2012 namenili več izdatkov za potovanja kot 4 leta kasneje, kljub temu, da se je minimalna plača zvišala. 
 
-Zato si sedaj natančneje poglejmo odvisnost izdatkov in minimalnih plač.
+Zato si sedaj še enkrat poglejmo povezave med minimalnimi plačami in izdatki.
 
 
 ```{r graf predvidevanja, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje odvisnost plače od izdatkov',warning=FALSE}
 print(graf3)
 ```
+Vidimo lahko, da se linearni model ne prilega najbolje samim točkam. Bolj ustreza polinom 3. stopnje (krivulja turkizne barve) oziroma optimalen model lokalne regresije (krivulja oranžne barve). Zopet lahko opazimo deljenje v dve skupini. Zgostitev je pri nižjih plačah in nižjih izdatkih, oziroma pri višjih plačah in višjih izdatkih. Nekoliko nas preseneti mogoče to, da bi pričakovali da se z višino minimalne plače višajo tudi izdatki, ki jih namenijo ljudje za potovanje, pa ni čisto tako. Tukaj bi bilo potrebno upoštevati tudi razmere v sami državi in delež državljanov, ki prejemajo minimalne plače. 
+
+ZAKLJUČEK
+Če pogledamo trende, ki nam jih nakazujejo podatki, je najbolj očitno to, da se bodo plače višale. Težko je podati kakšne koli napovedi, saj je veliko parametrov, ki jih nismo upoštevali.
+Ugotovili pa smo, kej so plače najvišje in kje najnižje. Mislim, da je to podobno predvidevanjim, da so najvišje plače v najbolj razvitem delu Slovenije. Pregled podatkov je potrdil naša predvidevanja, ki pa niso temeljila na statističnih podatkih. 
+
+
+
+<center>
 
 ![](http://www.opodo.co.uk/fileadmin/media/img/UK-IE/deals/header.jpg)
+
+</center>
+
+
 
 
 
