@@ -4,9 +4,10 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2017/18
 
 # Analiza plač v Sloveniji
 
-V svojem projektu bom analizirala plače v Sloveniji. Zanimali me bodo podatki o višini plače glede na dejavnosti ter višina plače glede na spol in starost. Analizirala bom tudi ali pride do razlik v plači med javnim in zasebnim sektorjem glede na stopnjo izobrazbe osebe.
+V svojem projektu bom analizirala plače v Sloveniji. Zanimali me bodo podatki o višini plače glede na dejavnosti ter višina plače glede na spol in starost. Analizirala bom tudi ali pride do razlik v plači med javnim in zasebnim sektorjem glede na stopnjo izobrazbe osebe. 
 
-Nato pa bom primerjala minimalne plače evropskih držav z minimalno v Sloveniji. Ter pogledala vzporednice med višanjem minimalne plače in povprečnimi izdatki za potovanje v letih od 2012-2016.
+Nato pa bom primerjala minimalne plače evropskih držav z minimalno v Sloveniji, ter pogledala vzporednice med višanjem minimalne plače in povprečnimi izdatki za potovanje v letih od 2012-2016. Pri tem bom pozorna na povezave, ki se bodo pojavile in jih dodatno analizirala. 
+
 
 Vir podatkov so Eurostat, SURS in FURS. 
 Podatki so v obliki CSV in HTML

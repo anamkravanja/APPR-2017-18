@@ -89,7 +89,7 @@ source("vizualizacija/vizualizacija.r", encoding = "UTF-8")
 ```
 
 Prvi graf prikazuje višine povprečnih plač po posameznih dejavnostih skozi obdobje 2008-2016.Opazimo lahko velike razlike. Izstopajo predvsem informacijske in komunikacijske dejavnosti,finančne in zavarovalniške dejavnosti, sledi oskrba z električno energijo, plinom in paro.
-Najnižjo povprečno plačo so prejemali zaposleni v gostinjstvu.
+Najnižjo povprečno plačo so prejemali zaposleni v gostinstvu.
 
 ```{r graf dejavnost, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf višine povprečnih plač po posameznih dejavnostih'}
 print(dejavnost)
@@ -106,7 +106,7 @@ print(sektorji)
 ```
 
 
-Sedaj lahko podatke nadgradimo in pogledamo primerjavo še glede na spol in razporeditev po letih. Neglede na izobrazbo in sektor imajo moški v povprečju višje plače kot ženske. Vidimo lahko, da je porazdelitev bruto plač izredno asimetrična. Mediana mesečne bruto plače deli populacijo na dva dela. Spodaj so tisti, ki imajo osnovnošolsko in srednješolsko izobrazbo, nad njo pa tisti z višje in visokošilsko izobrazbo. Neglede na sektor je plača pri moških v povprečju višja od plače žensk.  
+Sedaj lahko podatke nadgradimo in pogledamo primerjavo še glede na spol in razporeditev po letih. Opazimo, da je porazdelitev bruto plač izredno asimetrična. Mediana mesečne bruto plače deli populacijo na dva dela. Spodaj so tisti, ki imajo osnovnošolsko in srednješolsko izobrazbo, nad njo pa tisti z višje in visokošilsko izobrazbo. Neglede na sektor je plača pri moških v povprečju višja od plače žensk.  
 
 
 ```{r graf izobrazba, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje plače glede na izobrazbo in spol'}
@@ -159,7 +159,7 @@ shinyAppDir("shiny", options=list(width="100%", height=500))
 Pri prvem prikazu opazujemo plače v Sloveniji glede na regijo, jasno je vidno, da je v povprečju skozi vsa leta najvišja plača v osrednjeslovenski regiji, najnižja pa v prekmurju. Razmerje med regijami skozi čas ostaja približno enako. 
 
 
-Če pogledamo še drugi del, lahko vidimo zelo različe odvisnosti med izdatki za potovanja in minimalnimi plačami glede na države. Pričakovali bi, da bi pri nižji plači za potovanja porabili manj sredstev kot tisti, katerih plača je višja. Opazimo, da večinoma je tako, a so države ki izstopanjo. V Romuniji je zelo lepo vidno da se z višanjem minimalne plače višajo izdatki za potovanja. Zanimiva je, kot sme že prej omenila Malta, kjer so državljani leta 2012 namenili več izdatkov za potovanja kot 4 leta kasneje, kljub temu, da se je minimalna plača zvišala. 
+Če pogledamo še drugi del, lahko vidimo zelo različe odvisnosti med izdatki za potovanja in minimalnimi plačami glede na države. Pričakovali bi, da bi pri nižji plači za potovanja porabili manj sredstev kot tisti, katerih plača je višja. Opazimo, da večinoma je tako, a so države, ki izstopanjo. V Romuniji je zelo lepo vidno da se z višanjem minimalne plače višajo izdatki za potovanja. Zanimiva je, kot sme že prej omenila Malta, kjer so državljani leta 2012 namenili več izdatkov za potovanja kot 4 leta kasneje, kljub temu, da se je minimalna plača zvišala. 
 
 Zato si sedaj še enkrat poglejmo povezave med minimalnimi plačami in izdatki.
 
@@ -167,12 +167,11 @@ Zato si sedaj še enkrat poglejmo povezave med minimalnimi plačami in izdatki.
 ```{r graf predvidevanja, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Graf, ki prikazuje odvisnost plače od izdatkov',warning=FALSE}
 print(graf3)
 ```
-Vidimo lahko, da se linearni model ne prilega najbolje samim točkam. Bolj ustreza polinom 3. stopnje (krivulja turkizne barve) oziroma optimalen model lokalne regresije (krivulja oranžne barve). Zopet lahko opazimo deljenje v dve skupini. Zgostitev je pri nižjih plačah in nižjih izdatkih, oziroma pri višjih plačah in višjih izdatkih. Nekoliko nas preseneti mogoče to, da bi pričakovali da se z višino minimalne plače višajo tudi izdatki, ki jih namenijo ljudje za potovanje, pa ni čisto tako. Tukaj bi bilo potrebno upoštevati tudi razmere v sami državi in delež državljanov, ki prejemajo minimalne plače. 
+Linearni model se samim točkam ne prilega najbolje. Bolj ustreza polinom 3. stopnje (krivulja turkizne barve) oziroma optimalen model lokalne regresije (krivulja oranžne barve). Zopet lahko opazimo deljenje v dve skupini. Zgostitev je pri nižjih plačah in nižjih izdatkih, oziroma pri višjih plačah in višjih izdatkih. Nekoliko nas preseneti mogoče to, da bi pričakovali da se z višino minimalne plače višajo tudi izdatki, ki jih namenijo ljudje za potovanje, pa ni čisto tako. Tukaj bi bilo potrebno upoštevati tudi razmere v sami državi, delež državljanov, ki prejemajo minimalne plače ... 
 
 ZAKLJUČEK
-Če pogledamo trende, ki nam jih nakazujejo podatki, je najbolj očitno to, da se bodo plače višale. Težko je podati kakšne koli napovedi, saj je veliko parametrov, ki jih nismo upoštevali.
-Ugotovili pa smo, kej so plače najvišje in kje najnižje. Mislim, da je to podobno predvidevanjim, da so najvišje plače v najbolj razvitem delu Slovenije. Pregled podatkov je potrdil naša predvidevanja, ki pa niso temeljila na statističnih podatkih. 
-
+Če pogledamo trende, ki nam jih nakazujejo podatki, je najbolj očitno to, da se bodo plače višale. Težko je podati kakšne koli napovedi, saj je veliko parametrov, ki jih nismo upoštevali. Z višanjem plač se načeloma višajo tudi izdatki za potovanja. Torej lahko v prihodnosti predvidevamo, da bodo minimalne plače višje in da se bo povečala količina turizma.
+Ugotovili pa smo, kej so plače najvišje in kje najnižje. Mislim, da je to podobno predvidevanjim, da so najvišje plače v najbolj razvitem delu Slovenije. Pregled podatkov,ki so temeljila na statističnih podatkih, je potrdil naša predvidevanja.
 
 
 <center>
