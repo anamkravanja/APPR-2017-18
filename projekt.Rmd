@@ -169,7 +169,7 @@ print(graf3)
 ```
 Linearni model se samim točkam ne prilega najbolje. Bolj ustreza polinom 3. stopnje (krivulja turkizne barve) oziroma optimalen model lokalne regresije (krivulja oranžne barve). Zopet lahko opazimo deljenje v dve skupini. Zgostitev je pri nižjih plačah in nižjih izdatkih, oziroma pri višjih plačah in višjih izdatkih. Nekoliko nas preseneti mogoče to, da bi pričakovali da se z višino minimalne plače višajo tudi izdatki, ki jih namenijo ljudje za potovanje, pa ni čisto tako. Tukaj bi bilo potrebno upoštevati tudi razmere v sami državi, delež državljanov, ki prejemajo minimalne plače ... 
 
-# ZAKLJUČEK
+# Zaključek
 
 Če pogledamo trende, ki nam jih nakazujejo podatki, je najbolj očitno to, da se bodo plače višale. Težko je podati kakšne koli napovedi, saj je veliko parametrov, ki jih nismo upoštevali. Z višanjem plač se načeloma višajo tudi izdatki za potovanja. Torej lahko v prihodnosti predvidevamo, da bodo minimalne plače višje in da se bo povečala količina turizma.
 Ugotovili pa smo, kej so plače najvišje in kje najnižje. Mislim, da je to podobno predvidevanjim, da so najvišje plače v najbolj razvitem delu Slovenije. Pregled podatkov,ki so temeljila na statističnih podatkih, je potrdil naša predvidevanja.
